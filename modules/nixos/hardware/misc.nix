@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  nativeBL = config.desktop.isLaptop && config.desktop.gpu.amd;
+  nativeBL = config.machine.isLaptop && config.machine.gpu.amd.enable;
 in
 {
   hardware.steam-hardware.enable = true;

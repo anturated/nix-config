@@ -1,10 +1,10 @@
 { config, lib, ... }:
 
 let
-  useAmd = config.desktop.gpu.amd;
-  hasBusId = config.desktop.gpu.amdgpuBusId != "";
-  busId = config.desktop.gpu.amdgpuBusId;
-  quick = config.desktop.boot.quick;
+  useAmd = config.machine.gpu.amd;
+  hasBusId = config.machine.gpu.amd.busId != "";
+  busId = config.machine.gpu.amd.busId;
+  quick = config.machine.boot.quick;
 in
 {
   # brightness fix kinda

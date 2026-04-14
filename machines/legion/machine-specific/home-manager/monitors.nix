@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  desktop = {
+  machine = {
     monitors = [
       {
         name = "eDP-1";

@@ -7,7 +7,7 @@
 }:
 
 let
-  quick = config.desktop.boot.quick;
+  quick = config.machine.boot.quick;
 in
 {
   # quick(?) autologin

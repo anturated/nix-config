@@ -1,10 +1,10 @@
 { config, lib, ... }:
 
 let
-  useNvidia = config.desktop.gpu.nvidia;
-  hasBusId = config.desktop.gpu.nvidiaBusId != "";
-  busId = config.desktop.gpu.nvidiaBusId;
-  quick = config.desktop.boot.quick;
+  useNvidia = config.machine.gpu.nvidia.enable;
+  hasBusId = config.machine.gpu.nvidia.busId != "";
+  busId = config.machine.gpu.nvidia.busId;
+  quick = config.machine.boot.quick;
 in
 {
 

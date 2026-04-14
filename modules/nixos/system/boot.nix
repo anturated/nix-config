@@ -6,8 +6,8 @@
 }:
 
 let
-  quick = config.desktop.boot.quick;
-  usePlymouth = config.desktop.boot.plymouth;
+  quick = config.machine.boot.quick;
+  usePlymouth = config.machine.boot.plymouth;
 in
 {
   boot = {
