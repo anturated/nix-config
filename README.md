@@ -9,7 +9,7 @@ cd nix-config
 sudo nixos-rebuild switch --flake .
 ```
 
- or
+or
 
 ```bash
 sudo nixos-rebuild switch --flake github:anturated/nix-config
@@ -23,9 +23,9 @@ sudo nixos-rebuild switch --flake github:anturated/nix-config
 
 ## TODO
 #### general
-- [ ] redo optional/config stuff as { config = lib.kmIf (...) {...} }
-- [ ] do amd/nvidia config as a top level object (nvidia.enabled, amd.busid)
-- [ ] check every optionals and change to lib.mkIf probably
+- [x] redo optional/config stuff as { config = lib.kmIf (...) {...} }
+- [x] add custom options template
+- [x] do amd/nvidia config as a top level object (nvidia.enabled, amd.busid)
 - [ ] redo flake for actual multihost support
 #### rice
 - [ ] hyprland
