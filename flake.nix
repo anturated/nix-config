@@ -44,7 +44,7 @@
             # nixos modules
             modules = [
               # machine config
-              ./hosts/${machine.name}/config.nix
+              ./machines/${machine.name}/config.nix
               ./modules/nixos/default.nix
 
               # custom... ? #
@@ -57,7 +57,7 @@
                   useUserPackages = true;
                   # home-manager modules
                   users.${machine.user}.imports = [
-                    ./hosts/${machine.name}/home.nix
+                    ./machines/${machine.name}/home.nix
                     ./modules/home-manager/default.nix
                   ];
 
