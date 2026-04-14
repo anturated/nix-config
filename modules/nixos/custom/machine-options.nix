@@ -29,7 +29,7 @@
           description = "Enable AMD GPU drivers & optimizations";
         };
         busId = lib.mkOption {
-          type = lib.types.string;
+          type = lib.types.str;
           default = "";
           description = "GPU bus id used for pinning gpu to a set path and offloading";
         };
@@ -42,36 +42,34 @@
           description = "Enable Nvidia GPU drivers & optimizations";
         };
         busId = lib.mkOption {
-          type = lib.types.string;
+          type = lib.types.str;
           default = "";
           description = "GPU bus id used for pinning gpu to a set path and offloading";
         };
 
-        prime = {
-          mode = lib.mkOption {
-            type = lib.types.enum [
-              "disable"
-              "sync"
-              "reverse-sync"
-              "offload"
-            ];
-            default = "disable";
-            description = "NVIDIA PRIME mode: disable, sync, reverse-sync, or offload";
-          };
+        prime = lib.mkOption {
+          type = lib.types.enum [
+            "disable"
+            "sync"
+            "reverse-sync"
+            "offload"
+          ];
+          default = "disable";
+          description = "NVIDIA PRIME mode: disable, sync, reverse-sync, or offload";
         };
       };
     };
 
     system = {
-      timezone = lib.mkOption {
+      timeZone = lib.mkOption {
         type = lib.types.str;
         default = "";
-        description = "Shortcut for system.timezone nixos option";
+        description = "Shortcut for time.timeZone nixos option";
       };
       locale = lib.mkOption {
         type = lib.types.str;
         default = "";
-        description = "Shortcut for system.locale nixos option";
+        description = "Shortcut for i18n.defaultLocale nixos option";
       };
     };
   };

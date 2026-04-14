@@ -7,7 +7,7 @@
     ./machine-specific/nixos/users.nix
   ];
 
-  desktop = {
+  machine = {
     isLaptop = true;
 
     boot = {
@@ -25,10 +25,7 @@
         enable = true;
         busId = "1:0:0";
 
-        prime = {
-          enable = true;
-          offload = true;
-        };
+        prime = "offload";
       };
     };
 

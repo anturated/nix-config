@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # TODO: quickshell
@@ -15,6 +15,8 @@
     darkly-qt5
     darkly
   ];
+
+  # spicetify #
 
   programs.spicetify = {
     enable = true;

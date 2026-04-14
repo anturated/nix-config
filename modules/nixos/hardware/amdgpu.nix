@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  useAmd = config.machine.gpu.amd;
+  useAmd = config.machine.gpu.amd.enable;
   hasBusId = config.machine.gpu.amd.busId != "";
   busId = config.machine.gpu.amd.busId;
   quick = config.machine.boot.quick;

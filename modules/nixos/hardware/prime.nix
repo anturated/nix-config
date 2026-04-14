@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  mode = config.machine.gpu.nvidia.prime.mode;
+  mode = config.machine.gpu.nvidia.prime;
   amdBusId = config.machine.gpu.amd.busId;
   nvBusId = config.machine.gpu.nvidia.busId;
 

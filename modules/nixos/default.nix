@@ -1,4 +1,4 @@
-{ host, ... }:
+{ host, config, ... }:
 
 {
   imports = [
@@ -36,6 +36,9 @@
 
   networking.hostName = "${host}";
   networking.networkmanager.enable = true;
+
+  time.timeZone = "${config.machine.system.timeZone}";
+  i18n.defaultLocale = "${config.machine.system.locale}";
 
   services.xserver.xkb = {
     layout = "us";

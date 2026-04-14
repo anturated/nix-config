@@ -6,6 +6,8 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     kale.url = "path:/home/desant/Documents/projects/kale";
   };
 
@@ -15,6 +17,8 @@
       nixpkgs,
       nixos-hardware,
       home-manager,
+      spicetify-nix,
+      kale,
       ...
     }:
     let
@@ -47,7 +51,12 @@
               ./machines/${machine.name}/config.nix
               ./modules/nixos/default.nix
 
-              # custom... ? #
+              # custom #
+              spicetify-nix.nixosModules.default
+              { _module.args.spicetifyPkgs = spicetify-nix.legacyPackages.x86_64-linux; }
+              kale.nixosModules.default
+              # TODO: make conditional
+              nixos-hardware.nixosModules.lenovo-legion-15arh05h
 
               # home manager config
               home-manager.nixosModules.home-manager
