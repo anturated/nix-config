@@ -48,15 +48,15 @@
         };
 
         prime = {
-          enable = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
-            description = "Enable Optimus PRIME";
-          };
-          offload = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
-            description = "Enable PRIME Offload";
+          mode = lib.mkOption {
+            type = lib.types.enum [
+              "disable"
+              "sync"
+              "reverse-sync"
+              "offload"
+            ];
+            default = "disable";
+            description = "NVIDIA PRIME mode: disable, sync, reverse-sync, or offload";
           };
         };
       };
