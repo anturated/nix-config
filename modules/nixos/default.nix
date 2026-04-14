@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ./custom/machine-options.nix
+
     ./hardware/amdgpu.nix
     ./hardware/bluetooth.nix
     ./hardware/firmware.nix
