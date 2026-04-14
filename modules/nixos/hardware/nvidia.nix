@@ -5,6 +5,13 @@ let
   hasBusId = config.machine.gpu.nvidia.busId != "";
   busId = config.machine.gpu.nvidia.busId;
   quick = config.machine.boot.quick;
+  pciAddr =
+    let
+      parts = lib.splitString ":" busId;
+    in
+    "0000:${lib.fixedWidthString 2 "0" (builtins.elemAt parts 0)}"
+    + ":${lib.fixedWidthString 2 "0" (builtins.elemAt parts 1)}"
+    + ".${builtins.elemAt parts 2}";
 in
 {
   config = lib.mkIf useNvidia {
@@ -26,9 +33,8 @@ in
     ];
 
     services.udev.extraRules = lib.mkIf hasBusId ''
-      # NVIDIA dGPU
       KERNEL=="card*", \
-      KERNELS=="0000:${busId}", \
+      KERNELS=="${pciAddr}", \
       SUBSYSTEM=="drm", \
       SUBSYSTEMS=="pci", \
       SYMLINK+="dri/nvidia-dgpu"

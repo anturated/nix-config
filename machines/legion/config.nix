@@ -29,6 +29,15 @@
       };
     };
 
+    kernel = {
+      lts = false;
+      cachyos = {
+        enable = false;
+        lto = true;
+        variant = "bore";
+      };
+    };
+
     system = {
       locale = "en_US.UTF-8";
       timeZone = "Europe/Warsaw";

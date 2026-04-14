@@ -3,6 +3,7 @@
 {
   imports = [
     ./custom/machine-options.nix
+    ./custom/kernel-options.nix
 
     ./hardware/amdgpu.nix
     ./hardware/bluetooth.nix
@@ -24,6 +25,7 @@
     ./system/env.nix
     ./system/fonts.nix
     ./system/greet.nix
+    ./system/kernel.nix
   ];
 
   # enable spyware

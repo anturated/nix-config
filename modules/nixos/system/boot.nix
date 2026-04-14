@@ -11,8 +11,6 @@ let
 in
 {
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
-
     # time to choose derivation
     # (0 still lets you press ESC)
     loader.timeout = 0;

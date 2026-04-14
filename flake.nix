@@ -7,6 +7,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
+    awww.url = "git+https://codeberg.org/LGFae/awww";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     kale.url = "path:/home/desant/Documents/projects/kale";
   };
@@ -16,7 +19,9 @@
       self,
       nixpkgs,
       nixos-hardware,
+      nix-cachyos-kernel,
       home-manager,
+      awww,
       spicetify-nix,
       kale,
       ...
@@ -29,6 +34,7 @@
           arch = "x86_64-linux";
         }
       ];
+      kernelOverlays = nix-cachyos-kernel.overlays.pinned;
     in
     {
       # map configs to machines
@@ -54,9 +60,19 @@
               # custom #
               spicetify-nix.nixosModules.default
               { _module.args.spicetifyPkgs = spicetify-nix.legacyPackages.x86_64-linux; }
+              { environment.systemPackages = [ awww.packages.x86_64-linux.default ]; }
               kale.nixosModules.default
               # TODO: make conditional
               nixos-hardware.nixosModules.lenovo-legion-15arh05h
+
+              # cachyos kernel  TODO: make optional?
+              {
+                nixpkgs.overlays = [ kernelOverlays ];
+                nix.settings = {
+                  substituters = [ "https://attic.xuyh0120.win/lantian" ];
+                  trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
+                };
+              }
 
               # home manager config
               home-manager.nixosModules.home-manager

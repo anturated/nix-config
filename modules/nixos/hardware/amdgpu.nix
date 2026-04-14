@@ -5,6 +5,13 @@ let
   hasBusId = config.machine.gpu.amd.busId != "";
   busId = config.machine.gpu.amd.busId;
   quick = config.machine.boot.quick;
+  pciAddr =
+    let
+      parts = lib.splitString ":" busId;
+    in
+    "0000:${lib.fixedWidthString 2 "0" (builtins.elemAt parts 0)}"
+    + ":${lib.fixedWidthString 2 "0" (builtins.elemAt parts 1)}"
+    + ".${builtins.elemAt parts 2}";
 in
 {
   config = lib.mkIf useAmd {
@@ -20,7 +27,7 @@ in
 
     services.udev.extraRules = lib.mkIf hasBusId ''
       KERNEL=="card*", \
-      KERNELS=="0000:${busId}", \
+      KERNELS=="${pciAddr}", \
       SUBSYSTEM=="drm", \
       SUBSYSTEMS=="pci", \
       SYMLINK+="dri/amd-igpu"
