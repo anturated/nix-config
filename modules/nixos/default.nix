@@ -11,9 +11,12 @@
     ./hardware/nvidia.nix
     ./hardware/prime.nix
 
-    ./software/core.nix
     ./software/code.nix
+    ./software/core.nix
+    ./software/daily.nix
     ./software/gaming.nix
+    ./software/ricing.nix
+    ./software/services.nix
     ./software/util.nix
 
     ./system/boot.nix
