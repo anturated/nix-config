@@ -18,7 +18,7 @@ in
         command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd start-hyprland";
         user = "${user}";
       };
-      initial_session = lib.optionals quick {
+      initial_session = lib.mkIf quick {
         command = "start-hyprland";
         user = "${user}";
       };

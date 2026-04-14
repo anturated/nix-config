@@ -7,23 +7,23 @@ let
   quick = config.machine.boot.quick;
 in
 {
-  # brightness fix kinda
+  config = lib.mkIf useAmd {
+    # GPU drivers
+    services.xserver.videoDrivers = [
+      "amdgpu"
+    ];
 
-  # iGPU drivers
-  services.xserver.videoDrivers = lib.optionals (useAmd) [
-    "amdgpu"
-  ];
+    # should speed up the boot
+    boot.initrd.kernelModules = lib.optionals quick [
+      "amdgpu"
+    ];
 
-  # should speed up the boot
-  boot.initrd.kernelModules = lib.optionals (useAmd && quick) [
-    "amdgpu"
-  ];
-
-  services.udev.extraRules = lib.optionals (useAmd && hasBusId) ''
-    KERNEL=="card*", \
-    KERNELS=="0000:${busId}", \
-    SUBSYSTEM=="drm", \
-    SUBSYSTEMS=="pci", \
-    SYMLINK+="dri/amd-igpu"
-  '';
+    services.udev.extraRules = lib.mkIf hasBusId ''
+      KERNEL=="card*", \
+      KERNELS=="0000:${busId}", \
+      SUBSYSTEM=="drm", \
+      SUBSYSTEMS=="pci", \
+      SYMLINK+="dri/amd-igpu"
+    '';
+  };
 }

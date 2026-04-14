@@ -38,7 +38,7 @@ in
     loader.efi.canTouchEfiVariables = true;
 
     # optional plymouth
-    plymouth = lib.optionals usePlymouth {
+    plymouth = lib.mkIf usePlymouth {
       enable = true;
       theme = "circle_hud";
       themePackages = with pkgs; [
@@ -50,8 +50,8 @@ in
     };
 
     # compress initramfs (no idea how it helps but ok)
-    initrd.compressor = lib.optionals quick "zstd";
+    initrd.compressor = lib.mkIf quick "zstd";
     # don't wait for online
-    systemd.services.NetworkManager-wait-online.enable = lib.optionals quick false;
+    systemd.services.NetworkManager-wait-online.enable = lib.mkIf quick false;
   };
 }
