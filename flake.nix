@@ -17,44 +17,61 @@
       home-manager,
       ...
     }:
-    {
-      nixosConfigurations =
-        let
-          host = "legion";
-          user = "desant";
-        in
+    let
+      machines = [
         {
-          "${host}" = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
+          name = "legion";
+          user = "desant";
+          arch = "x86_64-linux";
+        }
+      ];
+    in
+    {
+      # map configs to machines
+      nixosConfigurations = nixpkgs.lib.listToAttrs (
+        map (machine: {
+          # make them accessible by flake.nix#machine
+          name = machine.name;
+          value = nixpkgs.lib.nixosSystem {
+            # inherit stuff
+            system = "${machine.arch}";
             specialArgs = {
-              inherit host;
-              inherit user;
+              host = machine.name;
+              user = machine.user;
               inherit inputs;
             };
 
+            # nixos modules
             modules = [
-              ./hosts/${host}/config.nix
+              # machine config
+              ./hosts/${machine}/config.nix
               ./modules/nixos/default.nix
+
+              # custom... ? #
+
+              # home manager config
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  users.${user}.imports = [
-                    # TODO:
-                    ./hosts/${host}/home.nix
-                    # TODO:
+                  # home-manager modules
+                  users.${machine.user}.imports = [
+                    ./hosts/${machine}/home.nix
                     ./modules/home-manager/default.nix
                   ];
+
+                  # inherit stuff to home-manager
                   extraSpecialArgs = {
-                    inherit host;
+                    host = machine.name;
+                    user = machine.user;
                     inherit inputs;
-                    inherit user;
                   };
                 };
               }
             ];
           };
-        };
+        }) machines
+      );
     };
 }
