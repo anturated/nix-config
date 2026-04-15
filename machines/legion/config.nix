@@ -32,9 +32,9 @@
     kernel = {
       lts = false;
       cachyos = {
-        enable = false;
+        enable = true;
         lto = true;
-        variant = "bore";
+        # variant = "bore";
       };
     };
 
