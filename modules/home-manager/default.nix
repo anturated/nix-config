@@ -6,7 +6,11 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
+    ./ricing/fastfetch.nix
+    ./ricing/starship.nix
   ];
+
+  programs.home-manager.enable = true;
 
   home.stateVersion = "25.05";
 }
