@@ -49,7 +49,8 @@ in
 
     # compress initramfs (no idea how it helps but ok)
     initrd.compressor = lib.mkIf quick "zstd";
-    # don't wait for online
-    systemd.services.NetworkManager-wait-online.enable = lib.mkIf quick false;
   };
+
+  # don't wait for online
+  systemd.services.NetworkManager-wait-online.enable = lib.mkIf quick false;
 }
