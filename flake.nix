@@ -11,7 +11,6 @@
 
     awww.url = "git+https://codeberg.org/LGFae/awww";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    kale.url = "path:/home/desant/Documents/projects/kale";
   };
 
   outputs =
@@ -23,7 +22,6 @@
       home-manager,
       awww,
       spicetify-nix,
-      kale,
       ...
     }:
     let
@@ -61,7 +59,6 @@
               spicetify-nix.nixosModules.default
               { _module.args.spicetifyPkgs = spicetify-nix.legacyPackages.x86_64-linux; }
               { environment.systemPackages = [ awww.packages.x86_64-linux.default ]; }
-              kale.nixosModules.default
               # TODO: make conditional
               nixos-hardware.nixosModules.lenovo-legion-15arh05h
 

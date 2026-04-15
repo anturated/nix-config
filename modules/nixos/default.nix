@@ -12,6 +12,9 @@
     ./hardware/nvidia.nix
     ./hardware/prime.nix
 
+    ./scripts/kale.nix
+    ./scripts/kaled.nix
+
     ./software/code.nix
     ./software/core.nix
     ./software/daily.nix
