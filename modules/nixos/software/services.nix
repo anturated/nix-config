@@ -16,7 +16,7 @@
       PLATFORM_PROFILE_ON_AC = "balanced";
       PLATFORM_PROFILE_ON_BAT = "low-power";
 
-      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_AC = 0;
       CPU_BOOST_ON_BAT = 0;
     };
   };
