@@ -32,7 +32,7 @@
     kernel = {
       lts = false;
       cachyos = {
-        enable = true;
+        # enable = true;
         lto = true;
         # variant = "bore";
       };
