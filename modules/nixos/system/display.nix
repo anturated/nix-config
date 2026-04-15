@@ -4,7 +4,6 @@
   config = {
     # no idea
     services.xserver.enable = false;
-    services.xserver.videoDrivers = [ "nvidia" ];
 
     # hyprland
     programs.hyprland.enable = true;
