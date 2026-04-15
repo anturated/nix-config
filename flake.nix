@@ -76,23 +76,31 @@
 
               # home manager config
               home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useUserPackages = true;
-                  # home-manager modules
-                  users.${machine.user}.imports = [
-                    ./machines/${machine.name}/home.nix
-                    ./modules/home-manager/default.nix
-                  ];
+              (
+                { pkgs, ... }:
+                {
+                  home-manager = {
+                    useUserPackages = true;
+                    # home-manager modules
+                    users.${machine.user}.imports = [
+                      ./machines/${machine.name}/home.nix
+                      ./modules/home-manager/default.nix
+                    ];
 
-                  # inherit stuff to home-manager
-                  extraSpecialArgs = {
-                    host = machine.name;
-                    user = machine.user;
-                    inherit inputs;
+                    # inherit stuff to home-manager
+                    extraSpecialArgs = {
+                      host = machine.name;
+                      user = machine.user;
+                      inherit inputs;
+                    };
                   };
-                };
-              }
+                  # enable cli for quick switching
+                  environment.systemPackages = [
+                    pkgs.home-manager
+                  ];
+                }
+              )
+
             ];
           };
         }) machines
