@@ -9,6 +9,7 @@
 
   machine = {
     isLaptop = true;
+    flakeDir = "$HOME/Documents/projects/nix-config";
 
     boot = {
       quick = true;

@@ -8,6 +8,13 @@
       description = "Change to true if the device is a laptop. Used for brightness and other fixes";
     };
 
+    flakeDir = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      example = "$HOME/.config/nix-config";
+      description = "Path to this flake if you have it cloned. Used for `rebuild` script. Optional if you don't use it.";
+    };
+
     boot = {
       quick = lib.mkOption {
         type = lib.types.bool;

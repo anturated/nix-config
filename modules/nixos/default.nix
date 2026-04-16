@@ -14,6 +14,7 @@
 
     ./scripts/kale.nix
     ./scripts/kaled.nix
+    ./scripts/rebuild.nix
 
     ./software/code.nix
     ./software/core.nix
