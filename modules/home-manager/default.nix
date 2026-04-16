@@ -8,6 +8,7 @@
   imports = [
     ./ricing/fastfetch.nix
     ./ricing/starship.nix
+    ./ricing/kitty.nix
   ];
 
   programs.home-manager.enable = true;
