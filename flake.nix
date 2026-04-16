@@ -25,13 +25,21 @@
       ...
     }:
     let
-      machines = [
+      # auto-discover machines from ./machines/ subdirectories
+      machineNames =
+        let
+          entries = builtins.readDir ./machines;
+        in
+        builtins.attrNames (nixpkgs.lib.filterAttrs (_name: kind: kind == "directory") entries);
+
+      machines = map (
+        name:
         {
-          name = "legion";
-          user = "desant";
-          arch = "x86_64-linux";
+          inherit name;
         }
-      ];
+        // import ./machines/${name}/meta.nix
+      ) machineNames;
+
       kernelOverlays = nix-cachyos-kernel.overlays.pinned;
     in
     {
