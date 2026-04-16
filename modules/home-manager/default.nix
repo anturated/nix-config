@@ -9,6 +9,7 @@
     ./ricing/fastfetch.nix
     ./ricing/starship.nix
     ./ricing/kitty.nix
+    ./ricing/fish.nix
   ];
 
   programs.home-manager.enable = true;
