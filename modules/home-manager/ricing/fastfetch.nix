@@ -31,8 +31,11 @@ in
         };
         color = {
           "1" = "white";
+          "2" = "blue";
           "3" = "white";
+          "4" = "blue";
           "5" = "white";
+          "6" = "blue";
         };
       };
       modules = [
