@@ -5,8 +5,7 @@
 
     packages = with pkgs; [
       # symbols #
-      # TODO: there's better nerd fonts fr fr
-      nerd-fonts.meslo-lg
+      nerd-fonts.symbols-only
       material-symbols
 
       # monospace #
