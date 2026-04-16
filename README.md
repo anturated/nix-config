@@ -1,6 +1,3 @@
-> [!CAUTION]
-> WIP NOT TESTed
-
 ## Installation / Usage
 
 ```bash
@@ -17,16 +14,20 @@ sudo nixos-rebuild switch --flake github:anturated/nix-config
 ```
 
 ## Structure
-* `hosts/` has pc-specific stuff (mounts, users, hardware-configuration), change host in flake.nix (test if can be done by command)
+* `machines/` has pc-specific stuff (mounts, users, hardware-configuration), change host in flake.nix (test if can be done by command)
 * `modules/nixos/` has system stuff (hardware, os, boot configs, packages)
 * `modules/home-manager` has configs / dotfiles
 
 ## TODO
 #### general
-- [x] redo optional/config stuff as { config = lib.kmIf (...) {...} }
-- [x] add custom options template
-- [x] do amd/nvidia config as a top level object (nvidia.enabled, amd.busid)
-- [ ] redo flake for actual multihost support
+- [ ] rewrite readme
+- [ ] make hardware module config line
+- [ ] conditional env for hyprland monitor var
+- [ ] make a shitload of options for cpu profiles (tlp/ppd, profile = {bat="...",ac,gam})
+- [ ] move personal programs to personal profile (telegram, vesktop, anytype, etc.)
+- [ ] make program groups optional (code, etc.)
+- [ ] make better program groups
+- [ ] set up nix-direnv
 #### rice
 - [ ] hyprland
 - [ ] kitty
@@ -35,7 +36,7 @@ sudo nixos-rebuild switch --flake github:anturated/nix-config
 - [ ] matugen
 - [ ] nvim
 - [ ] rofi
-- [ ] starship
+- [x] starship
 - [ ] icons?
 - [ ] gtk / qt themes?
 - [ ] fish
