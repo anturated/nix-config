@@ -6,6 +6,8 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
+    ./compositors/hyprland.nix
+
     ./ricing/fastfetch.nix
     ./ricing/starship.nix
     ./ricing/kitty.nix
