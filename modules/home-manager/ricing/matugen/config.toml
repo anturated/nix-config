@@ -1,0 +1,204 @@
+
+[config.wallpaper] # freaks out without this
+set = false
+command = 'hyprctl'
+argumants = ['hyprpaper', 'reload', 'eDP-1,{{image}}']
+
+[templates.btop]
+input_path = '~/.config/matugen/templates/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
+post_hook = 'killall -SIGUSR2 btop &'
+
+[templates.cava]
+input_path = '~/.config/matugen/templates/cava'
+output_path = '~/.config/cava/themes/ivy'
+post_hook = 'killall -SIGUSR2 cava &'
+
+[templates.vesktop]
+input_path = '~/.config/matugen/templates/discord.css'
+output_path = '~/.config/vesktop/themes/matugen.css'
+
+[templates.fish]
+input_path = '~/.config/matugen/templates/fish-theme.fish'
+output_path = '~/.config/fish/theme.fish'
+post_hook = "fish -c 'emit reload-theme' &"
+
+[templates.gtk3]
+input_path = '~/.config/matugen/templates/gtk.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+post_hook = "(sh -c 'gsettings set org.gnome.desktop.interface gtk-theme \"\"; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark') &"
+
+[templates.gtk4]
+input_path = '~/.config/matugen/templates/gtk.css'
+output_path = '~/.config/gtk-4.0/colors.css'
+
+[templates.hyprland]
+input_path = '~/.config/matugen/templates/hyprland-colors.conf'
+output_path = '~/.config/hypr/components/colors.conf'
+
+[templates.ivy]
+input_path = '~/.config/matugen/templates/ivy-colors.json'
+output_path = '~/.config/ivy-shell/colors.json'
+
+[templates.kitty]
+input_path = '~/.config/matugen/templates/kitty-theme.conf'
+output_path = '~/.config/kitty/current-theme.conf'
+post_hook = "killall -SIGUSR1 .kitty-wrapped &"
+
+[templates.prismlauncher]
+input_path = '~/.config/matugen/templates/prismlauncher.json'
+output_path = '~/.local/share/PrismLauncher/themes/Matugen/theme.json'
+
+[templates.qt5ct]
+input_path = '~/.config/matugen/templates/qtxct.conf'
+output_path = '~/.config/qt5ct/colors/matugen-theme.conf'
+
+[templates.qt6ct]
+input_path = '~/.config/matugen/templates/qtxct.conf'
+output_path = '~/.config/qt6ct/colors/matugen-theme.conf'
+
+[templates.rofi]
+input_path = '~/.config/matugen/templates/rofi.rasi'
+output_path = '~/.config/rofi/colors.rasi'
+
+[templates.yazi]
+input_path = '~/.config/matugen/templates/yazi-theme.toml'
+output_path = '~/.config/yazi/theme.toml'
+
+#########################
+# custom colors section #
+#########################
+
+[config]
+[config.custom_colors.red]
+color = "#FF0000"
+blend = true
+
+[config.custom_colors.green]
+color = "#00FF00"
+blend = true
+
+[config.custom_colors.yellow]
+color = "#FFFF00"
+blend = true
+
+[config.custom_colors.blue]
+color = "#0000FF"
+blend = true
+
+[config.custom_colors.magenta]
+color = "#FF00FF"
+blend = true
+
+[config.custom_colors.cyan]
+color = "#00FFFF"
+blend = true
+
+[config.custom_colors.white]
+color = "#FFFFFF"
+blend = true
+
+# catppuccin >:)
+[config.custom_colors.Rosewater]
+color = "#f5e0dc"
+blend = true
+
+[config.custom_colors.Flamingo]
+color = "#f2cdcd"
+blend = true
+
+[config.custom_colors.Pink]
+color = "#f5c2e7"
+blend = true
+
+[config.custom_colors.Mauve]
+color = "#cba6f7"
+blend = true
+
+[config.custom_colors.Red]
+color = "#f38ba8"
+blend = true
+
+[config.custom_colors.Maroon]
+color = "#eba0ac"
+blend = true
+
+[config.custom_colors.Peach]
+color = "#fab387"
+blend = true
+
+[config.custom_colors.Yellow]
+color = "#f9e2af"
+blend = true
+
+[config.custom_colors.Green]
+color = "#a6e3a1"
+blend = true
+
+[config.custom_colors.Teal]
+color = "#94e2d5"
+blend = true
+
+[config.custom_colors.Sky]
+color = "#89dceb"
+blend = true
+
+[config.custom_colors.Sapphire]
+color = "#74c7ec"
+blend = true
+
+[config.custom_colors.Blue]
+color = "#89b4fa"
+blend = true
+
+[config.custom_colors.Lavender]
+color = "#b4befe"
+blend = true
+
+[config.custom_colors.Text]
+color = "#cdd6f4"
+blend = true
+
+[config.custom_colors.Subtext1]
+color = "#bac2de"
+blend = true
+
+[config.custom_colors.Subtext0]
+color = "#a6adc8"
+blend = true
+
+[config.custom_colors.Overlay2]
+color = "#9399b2"
+blend = true
+
+[config.custom_colors.Overlay1]
+color = "#7f849c"
+blend = true
+
+[config.custom_colors.Overlay0]
+color = "#6c7086"
+blend = true
+
+[config.custom_colors.Surface2]
+color = "#585b70"
+blend = true
+
+[config.custom_colors.Surface1]
+color = "#45475a"
+blend = true
+
+[config.custom_colors.Surface0]
+color = "#313244"
+blend = true
+
+[config.custom_colors.Base]
+color = "#1e1e2e"
+blend = true
+
+[config.custom_colors.Mantle]
+color = "#181825"
+blend = true
+
+[config.custom_colors.Crust]
+color = "#11111b"
+blend = true
