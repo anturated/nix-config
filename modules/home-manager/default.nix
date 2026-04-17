@@ -10,6 +10,7 @@
     ./ricing/starship.nix
     ./ricing/kitty.nix
     ./ricing/fish.nix
+    ./ricing/cava.nix
   ];
 
   programs.home-manager.enable = true;
