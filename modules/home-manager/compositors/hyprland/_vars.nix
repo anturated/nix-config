@@ -7,7 +7,7 @@
 
   # Apps
   terminal = "kitty";
-  menu = "rofi -show drun -theme fishy-drun";
+  menu = "rofi -show drun";
   browser = "vivaldi";
   fileManager = "dolphin";
 

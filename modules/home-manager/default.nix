@@ -14,6 +14,7 @@
     ./ricing/fish.nix
     ./ricing/cava.nix
     ./ricing/matugen.nix
+    ./ricing/rofi.nix
   ];
 
   programs.home-manager.enable = true;
