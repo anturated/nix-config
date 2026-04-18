@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -17,6 +18,7 @@
     inputs@{
       self,
       nixpkgs,
+      nixpkgs-stable,
       nixos-hardware,
       nix-cachyos-kernel,
       home-manager,
@@ -55,6 +57,8 @@
               host = machine.name;
               user = machine.user;
               inherit inputs;
+
+              pkgs-stable = nixpkgs-stable.legacyPackages.${machine.arch};
               awww = awww.packages.x86_64-linux.default;
               spicetifyPkgs = spicetify-nix.legacyPackages.x86_64-linux;
             };
