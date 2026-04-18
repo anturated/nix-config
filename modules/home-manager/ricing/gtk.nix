@@ -1,7 +1,6 @@
 { pkgs, config, ... }:
 
 {
-  # 1. Force the Dconf setting that browsers read
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
@@ -16,7 +15,6 @@
     size = 24;
   };
 
-  # 2. Force GTK to use a dark theme
   gtk = {
     enable = true;
 
