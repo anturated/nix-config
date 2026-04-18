@@ -23,21 +23,21 @@ sudo nixos-rebuild switch --flake github:anturated/nix-config
 - [ ] rewrite readme
 - [ ] make hardware module config line
 - [ ] conditional env for hyprland monitor var
-- [ ] make a shitload of options for cpu profiles (tlp/ppd, profile = {bat="...",ac,gam})
 - [ ] move personal programs to personal profile (telegram, vesktop, anytype, etc.)
 - [ ] make program groups optional (code, etc.)
 - [ ] make better program groups
 - [ ] set up nix-direnv
+- [ ] fix fish config auto reload
 #### rice
-- [ ] hyprland
-- [ ] kitty
-- [ ] ff
-- [ ] cava
-- [ ] matugen
+- [x] hyprland
+- [x] kitty
+- [x] cava
+- [x] matugen
 - [ ] nvim
-- [ ] rofi
+- [x] rofi
 - [x] starship
+- [x] fastfetch
 - [ ] icons?
 - [ ] gtk / qt themes?
-- [ ] fish
+- [x] fish
 - [ ] mangohud
