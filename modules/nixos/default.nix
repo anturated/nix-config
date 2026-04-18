@@ -12,6 +12,7 @@
     ./hardware/nvidia.nix
     ./hardware/prime.nix
 
+    ./scripts/chwal.nix
     ./scripts/kale.nix
     ./scripts/kaled.nix
     ./scripts/rebuild.nix

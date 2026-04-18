@@ -1,7 +1,7 @@
 let
   vars = import ./_vars.nix;
 in
-{ ... }:
+{ pkgs, ... }:
 {
   # See https://wiki.hypr.land/Configuring/Keywords/
   # See https://wiki.hypr.land/Configuring/Binds/
@@ -23,7 +23,7 @@ in
     bind = $mainMod ALT, D, exec, vesktop
     bind = $mainMod ALT, M, exec, spotify
     bind = $mainMod SHIFT, P, exec, ${vars.terminal} --class=ncmpcpp-custom ncmpcpp
-    bind = $mainMod SHIFT, I, exec, ~/scripts/wallpaper.sh
+    bind = $mainMod SHIFT, I, exec, chwal
 
     # bind = $mainMod SHIFT, P, exec, poweroff
 
