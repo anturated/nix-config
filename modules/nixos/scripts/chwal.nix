@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, awww, ... }:
 
 {
   environment.systemPackages = [
@@ -7,46 +7,44 @@
 
       WALLPAPER_DIR="$HOME/Pictures/Wallpapers/"
       SCHEME="scheme-tonal-spot"
-      # SCHEME="scheme-rainbow"
-      # SCHEME="scheme-content"
 
       thumb_dir="$HOME/.cache/wallthumbs"
       mkdir -p "$thumb_dir"
 
-      img="$WALLPAPER_DIR$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.webp" \) \
+      img="$WALLPAPER_DIR$(${pkgs.findutils}/bin/find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.webp" \) \
           | while read -r file; do
-              base=$(basename "$file")
+              base=$(${pkgs.coreutils}/bin/basename "$file")
               thumb="$thumb_dir/$base"
               if [ ! -f "$thumb" ]; then
                   printf "%s\0icon\x1fthumbnail://%s\n" "$base" "$file"
-                  magick "$file" -thumbnail 200x200 "$thumb" &
+                  ${pkgs.imagemagick}/bin/magick "$file" -thumbnail 200x200 "$thumb" &
               else
                   printf "%s\0icon\x1f%s\n" "$base" "$thumb"
               fi
             done |
-            rofi -dmenu \
+            ${pkgs.rofi}/bin/rofi -dmenu \
                  -theme wallpaper 
           )"
 
       [ -z "$img" ] && exit 0
 
       # Get focused monitor info
-      monitor_json=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true)')
+      monitor_json=$(${pkgs.hyprland}/bin/hyprctl monitors -j | ${pkgs.jq}/bin/jq -r '.[] | select(.focused == true)')
 
       monitor=$(echo "$monitor_json" | jq -r '.name')
-      x=$(echo "$monitor_json" | jq -r '.x')
-      y=$(echo "$monitor_json" | jq -r '.y')
+      x=$(echo "$monitor_json" | ${pkgs.jq}/bin/jq -r '.x')
+      y=$(echo "$monitor_json" | ${pkgs.jq}/bin/jq -r '.y')
 
       # Fallback
       if [ -z "$monitor" ]; then
-          monitor_json=$(hyprctl monitors -j | jq -r '.[0]')
-          monitor=$(echo "$monitor_json" | jq -r '.name')
-          x=$(echo "$monitor_json" | jq -r '.x')
-          y=$(echo "$monitor_json" | jq -r '.y')
+          monitor_json=$(${pkgs.hyprland}/bin/hyprctl monitors -j | ${pkgs.jq}/bin/jq -r '.[0]')
+          monitor=$(echo "$monitor_json" | ${pkgs.jq}/bin/jq -r '.name')
+          x=$(echo "$monitor_json" | ${pkgs.jq}/bin/jq -r '.x')
+          y=$(echo "$monitor_json" | ${pkgs.jq}/bin/jq -r '.y')
       fi
 
       # Set wallpaper only on that monitor
-      awww img "$img"\
+      ${awww}/bin/awww img "$img"\
           --outputs "$monitor"\
           --transition-type any\
           --transition-fps 120\
@@ -55,42 +53,42 @@
       # If monitor is at (0,0), run matugen
       if [ "$x" -eq 0 ] && [ "$y" -eq 0 ]; then
           # lots of matugen bs
-          hash=$(sha1sum "$img" | cut -d' ' -f1)
+          hash=$(${pkgs.coreutils}/bin/sha1sum "$img" | ${pkgs.coreutils}/bin/cut -d' ' -f1)
           cache="$HOME/.cache/matugen/$SCHEME-$hash.json"
 
           if [ -f "$cache" ]; then
               echo "cache exists, applying"
-              matugen json "$cache"
+              ${pkgs.matugen}/bin/matugen json "$cache"
           else
               echo "cache does not exist, applying from image"
-              matugen image -t "$SCHEME" "$img"
+              ${pkgs.matugen}/bin/matugen image -t "$SCHEME" "$img"
 
               echo "cache generating"
-              hex=$(mktemp)
-              rgb=$(mktemp)
-              rgba=$(mktemp)
-              hsl=$(mktemp)
-              strip=$(mktemp)
+              hex=$(${pkgs.coreutils}/bin/mktemp)
+              rgb=$(${pkgs.coreutils}/bin/mktemp)
+              rgba=$(${pkgs.coreutils}/bin/mktemp)
+              hsl=$(${pkgs.coreutils}/bin/mktemp)
+              strip=$(${pkgs.coreutils}/bin/mktemp)
 
       		echo "generating colors (hex)..."
-              matugen image "$img" --dry-run -t "$SCHEME" -j hex > "$hex"
+              ${pkgs.matugen}/bin/matugen image "$img" --dry-run -t "$SCHEME" -j hex > "$hex"
       		echo "generating colors (rgb)..."
-              matugen image "$img" --dry-run -t "$SCHEME" -j rgb > "$rgb"
+              ${pkgs.matugen}/bin/matugen image "$img" --dry-run -t "$SCHEME" -j rgb > "$rgb"
       		echo "generating colors (rgba)..."
-              matugen image "$img" --dry-run -t "$SCHEME" -j rgba > "$rgba"
+              ${pkgs.matugen}/bin/matugen image "$img" --dry-run -t "$SCHEME" -j rgba > "$rgba"
       		echo "generating colors (hsl)..."
-              matugen image "$img" --dry-run -t "$SCHEME" -j hsl > "$hsl"
+              ${pkgs.matugen}/bin/matugen image "$img" --dry-run -t "$SCHEME" -j hsl > "$hsl"
       		echo "generating colors (strip)..."
-              matugen image "$img" --dry-run -t "$SCHEME" -j strip > "$strip"
+              ${pkgs.matugen}/bin/matugen image "$img" --dry-run -t "$SCHEME" -j strip > "$strip"
 
               echo "merging..."
 
-              jq -n \
-                  --argjson hex "$(cat "$hex")" \
-                  --argjson rgb "$(cat "$rgb")" \
-                  --argjson rgba "$(cat "$rgba")" \
-                  --argjson hsl "$(cat "$hsl")" \
-                  --argjson strip "$(cat "$strip")" \
+              ${pkgs.jq}/bin/jq -n \
+                  --argjson hex   "$(${pkgs.coreutils}/bin/cat "$hex")" \
+                  --argjson rgb   "$(${pkgs.coreutils}/bin/cat "$rgb")" \
+                  --argjson rgba  "$(${pkgs.coreutils}/bin/cat "$rgba")" \
+                  --argjson hsl   "$(${pkgs.coreutils}/bin/cat "$hsl")" \
+                  --argjson strip "$(${pkgs.coreutils}/bin/cat "$strip")" \
               '{
               colors:
                   ($hex.colors | to_entries | map(
@@ -116,6 +114,7 @@
                   ) | from_entries)
               }
               ' > "$cache"
+              ${pkgs.coreutils}/bin/rm "$hex" "$rgb" "$rgba" "$hsl" "$strip"
           fi
       fi
     '')
