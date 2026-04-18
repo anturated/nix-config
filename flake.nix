@@ -55,6 +55,8 @@
               host = machine.name;
               user = machine.user;
               inherit inputs;
+              awww = awww.packages.x86_64-linux.default;
+              spicetifyPkgs = spicetify-nix.legacyPackages.x86_64-linux;
             };
 
             # nixos modules
@@ -65,8 +67,6 @@
 
               # custom #
               spicetify-nix.nixosModules.default
-              { _module.args.spicetifyPkgs = spicetify-nix.legacyPackages.x86_64-linux; }
-              { environment.systemPackages = [ awww.packages.x86_64-linux.default ]; }
               # TODO: make conditional
               nixos-hardware.nixosModules.lenovo-legion-15arh05h
 

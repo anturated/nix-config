@@ -1,19 +1,20 @@
-{ pkgs, inputs, ... }:
+{ pkgs, awww, ... }:
 
 {
   # TODO: quickshell
   # TODO: awww
 
-  environment.systemPackages = with pkgs; [
-    cava
-    fastfetch
-    starship
-    matugen
-    quickshell
+  environment.systemPackages = [
+    pkgs.cava
+    pkgs.fastfetch
+    pkgs.starship
+    pkgs.matugen
+    pkgs.quickshell
+    awww
 
     # these are straight up themes
-    darkly-qt5
-    darkly
+    pkgs.darkly-qt5
+    pkgs.darkly
   ];
 
   # spicetify #
