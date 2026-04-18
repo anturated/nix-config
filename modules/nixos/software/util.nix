@@ -57,6 +57,5 @@
 
     # actually no idea where to put these
     usbutils
-    xdg-desktop-portal-hyprland
   ];
 }

@@ -15,6 +15,8 @@
     ./ricing/cava.nix
     ./ricing/matugen.nix
     ./ricing/rofi.nix
+    ./ricing/gtk.nix
+    ./ricing/qt.nix
   ];
 
   programs.home-manager.enable = true;
