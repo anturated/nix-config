@@ -27,7 +27,7 @@ in
 
     windowrule {
       name = games-wayland
-      match:xdg_tag = proton-game
+      match:content = 3 # contentType = game
 
       immediate = on
       fullscreen = on
