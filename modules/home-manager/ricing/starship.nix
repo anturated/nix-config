@@ -27,6 +27,8 @@
         truncation_symbol = "";
       };
 
+      palette = "ivy";
+
       palettes.ivy = {
         bluer = "#afc9d0";
         orang = "#BD6F3E";
