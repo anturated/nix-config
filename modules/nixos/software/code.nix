@@ -12,8 +12,10 @@
 
   environment.systemPackages = with pkgs; [
     # system-wide LSPs
-    nil
-    hyprls
+    nil # for nix
+    hyprls # for hypr (duh)
+    lua-language-server
+
     # TODO: add lua_ls
 
     kdePackages.qtdeclarative # for qmlls
