@@ -13,6 +13,7 @@
     ./ricing/kitty.nix
     ./ricing/fish.nix
     ./ricing/cava.nix
+    ./ricing/mangohud.nix
     ./ricing/matugen.nix
     ./ricing/rofi.nix
     ./ricing/gtk.nix
