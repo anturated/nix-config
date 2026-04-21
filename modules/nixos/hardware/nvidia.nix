@@ -5,6 +5,7 @@ let
   hasBusId = config.machine.gpu.nvidia.busId != "";
   busId = config.machine.gpu.nvidia.busId;
   quick = config.machine.boot.quick;
+  useFinegrained = config.machine.gpu.nvidia.prime == "offload";
   pciAddr =
     let
       parts = lib.splitString ":" busId;
@@ -19,7 +20,7 @@ in
       open = true;
       modesetting.enable = true;
       powerManagement.enable = true; # fixes sleep
-      powerManagement.finegrained = true; # should be saving power
+      powerManagement.finegrained = useFinegrained; # should be saving power
 
       # driver version
       package = config.boot.kernelPackages.nvidiaPackages.beta;
