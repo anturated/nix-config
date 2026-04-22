@@ -10,7 +10,6 @@
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
-    awww.url = "git+https://codeberg.org/LGFae/awww";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
@@ -22,7 +21,6 @@
       nixos-hardware,
       nix-cachyos-kernel,
       home-manager,
-      awww,
       spicetify-nix,
       ...
     }:
@@ -59,7 +57,6 @@
               inherit inputs;
 
               pkgs-stable = nixpkgs-stable.legacyPackages.${machine.arch};
-              awww = awww.packages.x86_64-linux.default;
               spicetifyPkgs = spicetify-nix.legacyPackages.x86_64-linux;
             };
 

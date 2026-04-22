@@ -1,4 +1,4 @@
-{ pkgs, awww, ... }:
+{ pkgs, ... }:
 
 {
   # TODO: quickshell
@@ -10,7 +10,7 @@
     pkgs.starship
     pkgs.matugen
     pkgs.quickshell
-    awww
+    pkgs.awww
 
     # these are straight up themes
     pkgs.darkly-qt5

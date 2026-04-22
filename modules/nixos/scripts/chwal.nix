@@ -1,4 +1,4 @@
-{ pkgs, awww, ... }:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = [
@@ -23,7 +23,7 @@
               fi
             done |
             ${pkgs.rofi}/bin/rofi -dmenu \
-                 -theme wallpaper 
+                 -theme wallpaper
           )"
 
       [ -z "$img" ] && exit 0
@@ -44,7 +44,7 @@
       fi
 
       # Set wallpaper only on that monitor
-      ${awww}/bin/awww img "$img"\
+      ${pkgs.awww}/bin/awww img "$img"\
           --outputs "$monitor"\
           --transition-type any\
           --transition-fps 120\
