@@ -41,6 +41,19 @@
     "flakes"
   ];
 
+  # garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly"; # or "daily"
+    options = "--delete-older-than 7d";
+  };
+
+  #  auto-optimize store
+  nix.optimise = {
+    automatic = true;
+    dates = [ "weekly" ];
+  };
+
   networking.hostName = "${host}";
   networking.networkmanager.enable = true;
 
