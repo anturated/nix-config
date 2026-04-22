@@ -65,6 +65,23 @@
     '';
 
     functions = {
+      zn = {
+        description = "zoxide + direnv + nvim";
+        body = ''
+          if test (count $argv) -eq 0
+              echo "Usage: zn <directory>"
+              return 1
+          end
+
+          z $argv[1]
+
+          if test -f .envrc
+              eval (direnv export fish)
+          end
+
+          nvim
+        '';
+      };
       fish_greeting = {
         description = "exec on start";
         body = "fastfetch";
