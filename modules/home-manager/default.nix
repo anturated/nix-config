@@ -3,8 +3,6 @@
   home.username = "${user}";
   home.homeDirectory = "/home/${user}";
 
-  nixpkgs.config.allowUnfree = true;
-
   imports = [
     ./compositors/hyprland.nix
 

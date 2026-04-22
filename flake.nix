@@ -90,6 +90,7 @@
                 {
                   home-manager = {
                     useUserPackages = true;
+                    useGlobalPkgs = true;
                     # home-manager modules
                     users.${machine.user}.imports = [
                       ./machines/${machine.name}/home.nix
