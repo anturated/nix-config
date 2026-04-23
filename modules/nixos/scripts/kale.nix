@@ -150,8 +150,6 @@
 
         declare -A seen
         while kill -0 $LAUNCHER_PID 2>/dev/null; do
-          # 1. Get all child PIDs recursively
-          # 2. Filter them to only include processes that look like games (.exe)
           while IFS= read -r pid; do
             if [ -n "$pid" ] && [ -z "''${seen[$pid]}" ] && [ "$pid" != "$$" ]; then
               PROC_NAME=$(ps -p "$pid" -o comm= 2>/dev/null | xargs)
@@ -160,12 +158,8 @@
               if [[ "''${PROC_NAME,,}" =~ \.exe$ ]] && [[ ! "''${PROC_NAME,,}" =~ $BLACKLIST ]]; then
                 seen[$pid]=1
                 ${pkgs.gamemode}/bin/gamemoded -r"$pid"
-                echo "> $pid $PROC_NAME" >> /home/desant/kale.log
-              else
-                echo "x $pid $PROC_NAME" >> /home/desant/kale.log
               fi
             fi
-          # pgrep -P $LAUNCHER_PID is too shallow; we use a recursive check or pgrep -f
           done < <(pgrep -f ".exe" 2>/dev/null)
           sleep 1
         done
