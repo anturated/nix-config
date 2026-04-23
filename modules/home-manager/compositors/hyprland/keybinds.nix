@@ -21,6 +21,7 @@ in
     bind = $mainMod ALT, T, exec, Telegram
     bind = $mainMod ALT, S, exec, steam -steamos
     bind = $mainMod ALT, D, exec, vesktop
+    bind = $mainMod ALT, A, exec, anytype
     bind = $mainMod ALT, M, exec, spotify
     bind = $mainMod SHIFT, P, exec, ${vars.terminal} --class=ncmpcpp-custom ncmpcpp
     bind = $mainMod SHIFT, I, exec, chwal
