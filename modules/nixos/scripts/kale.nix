@@ -85,7 +85,7 @@
           ${pkgs.hyprland}/bin/hyprctl reload
         fi
       }
-      trap cleanup EXIT
+      trap cleanup EXIT INT TERM HUP
 
       # remove hyprland beauty in favor of the frames
       if [ $USE_HYPR -eq 1 ]; then
@@ -153,7 +153,7 @@
           # 1. Get all child PIDs recursively
           # 2. Filter them to only include processes that look like games (.exe)
           while IFS= read -r pid; do
-            if [ -n "$pid" ] && [ -z "''${seen[$pid]}" ]; then
+            if [ -n "$pid" ] && [ -z "''${seen[$pid]}" ] && [ "$pid" != "$$" ]; then
               PROC_NAME=$(ps -p "$pid" -o comm= 2>/dev/null | xargs)
 
               # Only register if it's an .exe and NOT in the blacklist
