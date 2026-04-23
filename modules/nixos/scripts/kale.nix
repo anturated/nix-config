@@ -12,6 +12,7 @@
       USE_OFFLOAD=1
       USE_GAMEMODE=1
       USE_GAMEMODE_DAEMON=0
+      USE_GAMEMODE_BYPASS=0
       USE_MANGOHUD=1
       USE_POWER=1
       USE_PROTON_WAYLAND=1
@@ -19,7 +20,7 @@
       USE_STEAMDECK=0
 
       # check flags
-      while getopts ":mgGnCHOMPlsx" opt; do
+      while getopts ":mgGbnCHOMPlsx" opt; do
         FLAGS_SET=1
         case $opt in
           m) # minimal
@@ -40,15 +41,22 @@
             USE_GAMEMODE=1
             USE_GAMEMODE_DAEMON=1
             ;;
+          b) # bypass: daemon + direct pid registration, no gamemoderun
+            USE_GAMEMODE=0
+            USE_GAMEMODE_DAEMON=0
+            USE_GAMEMODE_BYPASS=1
+            ;;
           n) # no gamemode
             USE_GAMEMODE=0
             USE_GAMEMODE_DAEMON=0
+            USE_GAMEMODE_BYPASS=0
             ;;
           c) # customize
             USE_HYPR=0
             USE_OFFLOAD=0
             USE_GAMEMODE=0
             USE_GAMEMODE_DAEMON=0
+            USE_GAMEMODE_BYPASS=0
             USE_MANGOHUD=0
             USE_POWER=0
           ;;
@@ -134,8 +142,40 @@
       fi
 
       # run #
-      "''${CMD[@]}"
-      exit $?
+      if [ $USE_GAMEMODE_BYPASS -eq 1 ]; then
+        "''${CMD[@]}" &
+        LAUNCHER_PID=$!
+
+        BLACKLIST="^(steam|steamwebhelper|services|winedevice|svchost|plugplay|explorer|rpcss|tabtip|conhost|wineboot|rundll32|winemenubuilder)\.exe$"
+
+        declare -A seen
+        while kill -0 $LAUNCHER_PID 2>/dev/null; do
+          # 1. Get all child PIDs recursively
+          # 2. Filter them to only include processes that look like games (.exe)
+          while IFS= read -r pid; do
+            if [ -n "$pid" ] && [ -z "''${seen[$pid]}" ]; then
+              PROC_NAME=$(ps -p "$pid" -o comm= 2>/dev/null | xargs)
+
+              # Only register if it's an .exe and NOT in the blacklist
+              if [[ "''${PROC_NAME,,}" =~ \.exe$ ]] && [[ ! "''${PROC_NAME,,}" =~ $BLACKLIST ]]; then
+                seen[$pid]=1
+                ${pkgs.gamemode}/bin/gamemoded -r"$pid"
+                echo "> $pid $PROC_NAME" >> /home/desant/kale.log
+              else
+                echo "x $pid $PROC_NAME" >> /home/desant/kale.log
+              fi
+            fi
+          # pgrep -P $LAUNCHER_PID is too shallow; we use a recursive check or pgrep -f
+          done < <(pgrep -f ".exe" 2>/dev/null)
+          sleep 1
+        done
+
+        wait $LAUNCHER_PID
+        exit $?
+      else
+        "''${CMD[@]}"
+        exit $?
+      fi
     '')
   ];
 }
