@@ -146,7 +146,7 @@
         "''${CMD[@]}" &
         LAUNCHER_PID=$!
 
-        BLACKLIST="^(steam|steamwebhelper|services|winedevice|svchost|plugplay|explorer|rpcss|tabtip|conhost|wineboot|rundll32|winemenubuilder)\.exe$"
+        BLACKLIST="^(steam|steamwebhelper|services|winedevice|svchost|plugplay|explorer|rpcss|tabtip|conhost|wineboot|rundll32|winemenubuilder|upc)\.exe$"
 
         declare -A seen
         while kill -0 $LAUNCHER_PID 2>/dev/null; do
