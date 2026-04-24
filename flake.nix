@@ -11,6 +11,11 @@
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -22,6 +27,7 @@
       nix-cachyos-kernel,
       home-manager,
       spicetify-nix,
+      nix-index-database,
       ...
     }:
     let
@@ -70,6 +76,12 @@
               spicetify-nix.nixosModules.default
               # TODO: make conditional
               nixos-hardware.nixosModules.lenovo-legion-15arh05h
+              # nix index + comma
+              nix-index-database.nixosModules.nix-index
+              {
+                programs.nix-index-database.comma.enable = true;
+                # Do NOT also add comma to systemPackages — the module handles it
+              }
 
               # cachyos kernel  TODO: make optional?
               {
