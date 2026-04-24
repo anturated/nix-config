@@ -55,13 +55,14 @@
           # lots of matugen bs
           hash=$(${pkgs.coreutils}/bin/sha1sum "$img" | ${pkgs.coreutils}/bin/cut -d' ' -f1)
           cache="$HOME/.cache/matugen/$SCHEME-$hash.json"
+          echo "hash is $hash for $img"
 
           if [ -f "$cache" ]; then
               echo "cache exists, applying"
               ${pkgs.matugen}/bin/matugen json "$cache"
           else
               echo "cache does not exist, applying from image"
-              ${pkgs.matugen}/bin/matugen image -t "$SCHEME" "$img"
+              ${pkgs.matugen}/bin/matugen image --source-color-index 0 -t "$SCHEME" "$img"
 
               echo "cache generating"
               hex=$(${pkgs.coreutils}/bin/mktemp)
@@ -71,15 +72,15 @@
               strip=$(${pkgs.coreutils}/bin/mktemp)
 
       		echo "generating colors (hex)..."
-              ${pkgs.matugen}/bin/matugen image "$img" --dry-run -t "$SCHEME" -j hex > "$hex"
+              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --dry-run -t "$SCHEME" -j hex > "$hex"
       		echo "generating colors (rgb)..."
-              ${pkgs.matugen}/bin/matugen image "$img" --dry-run -t "$SCHEME" -j rgb > "$rgb"
+              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --dry-run -t "$SCHEME" -j rgb > "$rgb"
       		echo "generating colors (rgba)..."
-              ${pkgs.matugen}/bin/matugen image "$img" --dry-run -t "$SCHEME" -j rgba > "$rgba"
+              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --dry-run -t "$SCHEME" -j rgba > "$rgba"
       		echo "generating colors (hsl)..."
-              ${pkgs.matugen}/bin/matugen image "$img" --dry-run -t "$SCHEME" -j hsl > "$hsl"
+              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --dry-run -t "$SCHEME" -j hsl > "$hsl"
       		echo "generating colors (strip)..."
-              ${pkgs.matugen}/bin/matugen image "$img" --dry-run -t "$SCHEME" -j strip > "$strip"
+              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --dry-run -t "$SCHEME" -j strip > "$strip"
 
               echo "merging..."
 
