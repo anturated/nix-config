@@ -16,6 +16,7 @@
     ./ricing/rofi.nix
     ./ricing/gtk.nix
     ./ricing/qt.nix
+    ./ricing/vesktop.nix
   ];
 
   programs.home-manager.enable = true;
