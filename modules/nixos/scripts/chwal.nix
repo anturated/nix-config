@@ -72,15 +72,15 @@
               strip=$(${pkgs.coreutils}/bin/mktemp)
 
       		echo "generating colors (hex)..."
-              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --dry-run -t "$SCHEME" -j hex > "$hex"
+              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --old-json-output --dry-run -t "$SCHEME" -j hex > "$hex"
       		echo "generating colors (rgb)..."
-              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --dry-run -t "$SCHEME" -j rgb > "$rgb"
+              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --old-json-output --dry-run -t "$SCHEME" -j rgb > "$rgb"
       		echo "generating colors (rgba)..."
-              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --dry-run -t "$SCHEME" -j rgba > "$rgba"
+              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --old-json-output --dry-run -t "$SCHEME" -j rgba > "$rgba"
       		echo "generating colors (hsl)..."
-              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --dry-run -t "$SCHEME" -j hsl > "$hsl"
+              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --old-json-output --dry-run -t "$SCHEME" -j hsl > "$hsl"
       		echo "generating colors (strip)..."
-              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --dry-run -t "$SCHEME" -j strip > "$strip"
+              ${pkgs.matugen}/bin/matugen image --source-color-index 0 "$img" --old-json-output --dry-run -t "$SCHEME" -j strip > "$strip"
 
               echo "merging..."
 
