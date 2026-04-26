@@ -86,7 +86,7 @@ in
 
     windowrule {
       name = game-launchers
-      match:class = ^(steam)$|^(com.usebottles.bottles)$
+      match:class = ^(steam)$|^(com.usebottles.bottles)$|^(org.prismlauncher.PrismLauncher)$
 
       workspace = 5
     }
