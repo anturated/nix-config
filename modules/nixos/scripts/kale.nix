@@ -1,5 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
+let
+  hasOffload = config.machine.gpu.nvidia.prime == "offload";
+  useOffload = if hasOffload then "1" else "0";
+in
 {
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "kale" ''
@@ -9,15 +13,17 @@
 
       # defaults
       USE_HYPR=1
-      USE_OFFLOAD=1
+      USE_OFFLOAD=${useOffload}
       USE_GAMEMODE=1
       USE_GAMEMODE_DAEMON=0
       USE_GAMEMODE_BYPASS=0
       USE_MANGOHUD=1
       USE_POWER=1
-      USE_PROTON_WAYLAND=1
+      USE_PROTON_WAYLAND=0
       USE_PROTON_LOG=0
       USE_STEAMDECK=0
+      USE_NTSYNC=1
+      USE_GAMESCOPE=1
 
       # check flags
       while getopts ":mgGbnCHOMPlsx" opt; do
@@ -50,6 +56,10 @@
             USE_GAMEMODE=0
             USE_GAMEMODE_DAEMON=0
             USE_GAMEMODE_BYPASS=0
+            ;;
+          S) # gamescope
+            USE_PROTON_WAYLAND=0 # breaks i think
+            USE_GAMESCOPE=1
             ;;
           c) # customize
             USE_HYPR=0
@@ -116,6 +126,15 @@
       [ $USE_PROTON_WAYLAND -eq 1 ] && ENV_VARS+=("PROTON_ENABLE_WAYLAND=1")
       [ $USE_PROTON_LOG -eq 1 ] && ENV_VARS+=("PROTON_LOG=1")
       [ $USE_STEAMDECK -eq 1 ] && ENV_VARS+=("SteamDeck=1")
+      [ $USE_NTSYNC -eq 1 ] && ENV_VARS+=("PROTON_ENABLE_NTSYNC=1")
+      if [ $USE_GAMESCOPE -eq 1 ]; then
+        if [ $USE_MANGOHUD -eq 1 ]; then
+          ENV_VARS+=("MANGOHUD=1")
+          # export PATH="${pkgs.mangohud}/bin:$PATH"
+        fi
+        # this should kill the lag at ~24 minutes
+        ENV_VARS+=("LD_PRELOAD=\"\"")
+      fi
 
       # nvidia offload
       if [ $USE_OFFLOAD -eq 1 ]; then
@@ -133,8 +152,13 @@
       fi
 
       # wrappers (order matters!)
-      if [ $USE_MANGOHUD -eq 1 ]; then
-        CMD=(${pkgs.mangohud}/bin/mangohud "''${CMD[@]}")
+      if [ $USE_GAMESCOPE -eq 1 ]; then
+        # use default gamescope to apply args from config
+        CMD=(gamescope  -- "''${CMD[@]}")
+      else
+        if [ $USE_MANGOHUD -eq 1 ]; then
+          CMD=(${pkgs.mangohud}/bin/mangohud "''${CMD[@]}")
+        fi
       fi
 
       if [ $USE_GAMEMODE -eq 1 ]; then

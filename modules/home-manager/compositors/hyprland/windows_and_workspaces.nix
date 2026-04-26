@@ -35,6 +35,14 @@ in
     }
 
     windowrule {
+      name = gamescope
+      match:class = gamescope
+
+      fullscreen = on
+      workspace = 2
+    }
+
+    windowrule {
       name = browser-no-borders
       match:class = ^(vivaldi-stable)$|^(zen)$
 
