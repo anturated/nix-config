@@ -31,7 +31,7 @@
             ;;
           # env vars
           x) USE_PROTON_WAYLAND=0 ;;
-          l) PROTON_LOG=1 ;;
+          l) USE_PROTON_LOG=1 ;;
           s) USE_STEAMDECK=1 ;;
           g) # gamemode daemon
             USE_GAMEMODE=0
