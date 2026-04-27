@@ -102,6 +102,10 @@ in
         ${pkgs.hyprland}/bin/hyprctl keyword animations:enabled 0
         ${pkgs.hyprland}/bin/hyprctl keyword decoration:blur:enabled 0
         ${pkgs.hyprland}/bin/hyprctl keyword render:direct_scanout 1
+        ${pkgs.hyprland}/bin/hyprctl keyword decoration:shadow:enabled 0
+        ${pkgs.hyprland}/bin/hyprctl keyword decoration:rounding 0
+        ${pkgs.hyprland}/bin/hyprctl keyword general:gaps_in 0
+        ${pkgs.hyprland}/bin/hyprctl keyword general:gaps_out 0
       fi
 
       # apply power profiles
