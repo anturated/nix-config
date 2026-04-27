@@ -16,6 +16,9 @@
     hyprls # for hypr (duh)
     lua-language-server
 
+    # treesitter wants gcc
+    gcc
+
     # TODO: add lua_ls
 
     kdePackages.qtdeclarative # for qmlls
