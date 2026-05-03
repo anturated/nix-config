@@ -1,4 +1,4 @@
-# gonna trust izabelroses on this for now
+# gonna trust isabelroses on this for now
 {
   lib,
   pkgs,
