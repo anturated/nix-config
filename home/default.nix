@@ -6,8 +6,6 @@
   imports = [
     ./compositors/hyprland.nix
 
-    ./custom/monitors-options.nix
-
     ./ricing/fastfetch.nix
     ./ricing/starship.nix
     ./ricing/kitty.nix
