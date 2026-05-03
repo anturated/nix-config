@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  ceirios.users = {
+    desant = { };
+  };
+}
