@@ -20,7 +20,6 @@ in
 
   config.boot = {
     loader = {
-
       # time to choose derivation
       # (0 still lets you press ESC)
       timeout = cfg.timeout;
@@ -45,8 +44,5 @@ in
 
     # i have ONE ntfs partition and it needs to go
     supportedFilesystems = [ "ntfs" ];
-
-    # compress initramfs (no idea how it helps but ok)
-    initrd.compressor = "zstd";
   };
 }
