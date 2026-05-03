@@ -1,27 +1,20 @@
-{ user, ... }:
+{ config, inputs, self, lib, pkgs, ... }:
+
 {
-  home.username = "${user}";
-  home.homeDirectory = "/home/${user}";
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
 
-  imports = [
-    ./compositors/hyprland.nix
+    extraSpecialArgs = { inherit inputs self; };
 
-    ./custom/monitors-options.nix
+    users = lib.mapAttrs (username: _: {
+      imports = [
+        (self + "/homes/${username}/default.nix")
+        (self + "/modules/home-manager/default.nix")
+      ];
+    }) config.ceirios.users;
+  };
 
-    ./ricing/fastfetch.nix
-    ./ricing/starship.nix
-    ./ricing/kitty.nix
-    ./ricing/fish.nix
-    ./ricing/cava.nix
-    ./ricing/mangohud.nix
-    ./ricing/matugen.nix
-    ./ricing/rofi.nix
-    ./ricing/gtk.nix
-    ./ricing/qt.nix
-    ./ricing/vesktop.nix
-  ];
-
-  programs.home-manager.enable = true;
-
-  home.stateVersion = "25.05";
+  # lets you run `home-manager switch` manually on the machine too
+  environment.systemPackages = [ pkgs.home-manager ];
 }
