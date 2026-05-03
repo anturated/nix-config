@@ -1,0 +1,8 @@
+{ ... }:
+
+{
+  imports = [
+    ./nix
+    ./nixpkgs.nix
+  ];
+}
