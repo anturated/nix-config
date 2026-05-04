@@ -2,7 +2,7 @@
 # like ssh keys and such.
 # nixos-specific stuff like passwords is in modules/nixos/users/
 
-{ lib, ... }:
+{ lib, config, ... }:
 
 let
   inherit (lib)
@@ -11,7 +11,7 @@ let
     types
     ;
   inherit (types)
-
+    enum
     attrsOf
     str
     ;
@@ -23,21 +23,33 @@ in
 
   # this exists for per user overrides per machine
   # like home config, etc.
-  options.ceirios.system.users = {
-    type = attrsOf (
-      submodule (
-        { name, ... }:
-        {
-          options = {
-            home = mkOption {
-              type = str;
-              default = "ivy";
-              description = "Which home config to use from homes/";
-              example = "ivy";
+  options.ceirios.system = {
+    mainUser = mkOption {
+      type = enum config.ceirios.system.users;
+      default = builtins.elemAt (builtins.attrNames config.ceirios.system.users) 0;
+      description = "Main user's username. Used for root password";
+    };
+
+    users = {
+      type = attrsOf (
+        submodule (
+          { name, ... }:
+          {
+            options = {
+              home = mkOption {
+                type = str;
+                default = "ivy";
+                description = "Which home config to use from homes/";
+                example = "ivy";
+              };
             };
-          };
-        }
-      )
-    );
+          }
+        )
+      );
+
+      default = {
+        desant = { };
+      };
+    };
   };
 }
