@@ -1,6 +1,12 @@
 { ... }:
 
 {
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/a759a98c-12ae-432c-b7ab-670e8caf1704";
+    fsType = "ext4";
+  };
+
   fileSystems."/run/media/desant/debil" = {
     device = "/dev/disk/by-uuid/ed18b60f-830b-4884-aaa2-6ad3d52d4634";
     fsType = "ext4";
