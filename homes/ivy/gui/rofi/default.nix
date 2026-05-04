@@ -3,7 +3,7 @@
 {
   programs.rofi = {
     enable = true;
-    theme = ./rofi/drun.rasi;
+    theme = ./drun.rasi;
   };
 
   xdg.configFile = {

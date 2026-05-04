@@ -6,7 +6,7 @@
 }:
 
 let
-  quick = config.machine.boot.quick;
+  quick = config.ceirios.system.login.autoLogin;
   user = config.ceirios.system.mainUser;
 in
 {

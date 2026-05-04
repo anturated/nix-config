@@ -8,6 +8,6 @@
     ./environment
     ./revision.nix
     ./profiles.nix
-    ./default.nix
+    ./defaults.nix
   ];
 }

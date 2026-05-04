@@ -1,4 +1,4 @@
-{ lib, config,... }:
+{ lib, config, ... }:
 
 let
   inherit (lib) mkOption types;
@@ -11,7 +11,6 @@ let
     ;
 in
 {
-  # default = builtins.elemAt (builtins.attrNames config.ceirios.system.users) 0;
   options.ceirios.hardware = {
     mainMonitor = {
       type = str;
@@ -51,6 +50,27 @@ in
                 default = 60;
                 description = "Refresh rate of the monitor in hz";
                 example = 144;
+              };
+
+              orientation = lib.mkOption {
+                type = int;
+                default = 0;
+                description = "How many times the monitor is rotated 90 degrees.";
+                example = 3;
+              };
+
+              x = lib.mkOption {
+                type = int;
+                default = 0;
+                description = "Horizontal offset in pixels";
+                example = -1920;
+              };
+
+              y = lib.mkOption {
+                type = int;
+                default = 0;
+                description = "Vertical offset in pixels";
+                example = 700;
               };
 
               scale = mkOption {

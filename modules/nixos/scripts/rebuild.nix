@@ -2,14 +2,22 @@
   pkgs,
   config,
   host,
+  lib,
   ...
 }:
 
 let
-  flakeDir = config.machine.flakeDir;
+  flakeDir = config.ceirios.system.flakeDir;
 in
 {
-  environment.systemPackages = [
+  # HACK: there's probably a better way, gonna stick with this for now
+  options.ceirios.system.flakeDir = lib.mkOption {
+    type = lib.types.str;
+    default = "";
+    description = "Path to your local config";
+  };
+
+  config.environment.systemPackages = [
     (pkgs.writeShellScriptBin "rebuild" ''
       #!/usr/bin/env bash
       set -e
@@ -18,7 +26,7 @@ in
 
       usage() {
         echo "Usage:"
-        echo "  rebuild           -> local flake (requires config.machine.flakeDir)"
+        echo "  rebuild           -> local flake (requires config.ceirios.system.flakeDir)"
         echo "  rebuild -m        -> from GitHub master"
         echo "  rebuild -s        -> latest tag (stable)"
         echo "  rebuild <tag>     -> specific tag (e.g. 1.0.0)"

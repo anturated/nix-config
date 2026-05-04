@@ -25,7 +25,7 @@ in
   # like home config, etc.
   options.ceirios.system = {
     mainUser = mkOption {
-      type = enum config.ceirios.system.users;
+      type = enum (builtins.attrNames config.ceirios.system.users);
       default = builtins.elemAt (builtins.attrNames config.ceirios.system.users) 0;
       description = "Main user's username. Used for root password";
     };
