@@ -18,4 +18,17 @@
       "x-gvfs-show"
     ];
   };
+
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/c924a917-cab8-4f03-b956-ea0eee0ebc80"; }
+  ];
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/ECB0-41F7";
+    fsType = "vfat";
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+    ];
+  };
 }
