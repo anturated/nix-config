@@ -1,7 +1,7 @@
-{ lib, config, ... }:
+{ ... }:
 
 {
-  imports = lib.optionals config.ceirios.profiles.gaming [
+  imports = [
     ./gamemode.nix
     ./mangohud.nix
     ./prism.nix

@@ -5,7 +5,7 @@ let
 in
 {
   services.tuned = {
-    enabled = isLaptop;
+    enable = isLaptop;
     ppdSettings.main.battery_detection = true;
   };
 }

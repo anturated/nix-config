@@ -27,7 +27,7 @@ in
       imports = [ ./${users.${name}.home} ];
 
       # also give it the username, because.
-      _module.args.name = name;
+      _module.args.user = name;
     });
 
     extraSpecialArgs = {

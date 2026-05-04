@@ -6,11 +6,11 @@
 
 let
   inherit (lib)
-    submodule
     mkOption
     types
     ;
   inherit (types)
+    submodule
     enum
     attrsOf
     str
@@ -30,7 +30,7 @@ in
       description = "Main user's username. Used for root password";
     };
 
-    users = {
+    users = mkOption {
       type = attrsOf (
         submodule (
           { name, ... }:
