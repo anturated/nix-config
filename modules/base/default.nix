@@ -6,5 +6,6 @@
     ../../homes
     ./nix
     ./nixpkgs.nix
+    ./users
   ];
 }

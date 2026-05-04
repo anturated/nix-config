@@ -14,5 +14,6 @@
     ./security
     ./software
     ./system
+    ./users
   ];
 }
