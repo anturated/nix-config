@@ -19,6 +19,8 @@ in
     };
   };
 
-  time.timeZone = "${config.ceirios.system.timeZone}";
-  i18n.defaultLocale = "${config.ceirios.system.locale}";
+  config = {
+    time.timeZone = "${config.ceirios.system.timeZone}";
+    i18n.defaultLocale = "${config.ceirios.system.locale}";
+  };
 }

@@ -3,7 +3,6 @@
 {
   imports = [
     ./mounts.nix
-    ./users.nix
   ];
 
   ceirios = {
