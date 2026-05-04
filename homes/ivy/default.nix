@@ -1,8 +1,5 @@
-{ user, ... }:
+{ ... }:
 {
-  home.username = "${user}";
-  home.homeDirectory = "/home/${user}";
-
   imports = [
     ./cli
     ./compositors
@@ -11,8 +8,4 @@
     ./ricing
     ./tui
   ];
-
-  programs.home-manager.enable = true;
-
-  home.stateVersion = "25.05";
 }

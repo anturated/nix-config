@@ -27,6 +27,7 @@
 
     system = {
       login.autoLogin = true;
+      stateVersion = "25.05";
     };
   };
 }
