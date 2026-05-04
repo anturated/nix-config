@@ -5,6 +5,7 @@
 
 lib.fixedPoints.makeExtensible (final: {
   mkHost = import ./mkHost.nix { inherit inputs lib; };
+  validators = import ./validators.nix { inherit lib; };
 
   inherit (final.validators)
     ifTheyExist
