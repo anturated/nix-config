@@ -5,6 +5,7 @@
   config,
   inputs,
   inputs',
+  host,
   ...
 }:
 
@@ -35,6 +36,7 @@ in
         self'
         inputs
         inputs'
+        host
         ;
     };
 
