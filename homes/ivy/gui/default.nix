@@ -1,0 +1,9 @@
+
+{...}:
+
+{
+  imports = [
+    ./rofi
+    ./kitty.nix
+  ];
+}

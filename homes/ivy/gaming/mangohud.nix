@@ -1,6 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  ceirios.packages = [
+    pkgs.mangohud
+  ];
 
   xdg.configFile."MangoHud/MangoHud.conf".text = ''
     ################ PERFORMANCE #################

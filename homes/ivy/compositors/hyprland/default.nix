@@ -3,14 +3,14 @@
 {
   # https://wiki.hypr.land/Configuring/Configuring-Hyprland/
   imports = [
-    ./hyprland/autostart.nix
-    ./hyprland/environment.nix
-    ./hyprland/permissions.nix
-    ./hyprland/look_and_feel.nix
-    ./hyprland/input.nix
-    ./hyprland/keybinds.nix
-    ./hyprland/monitors.nix
-    ./hyprland/windows_and_workspaces.nix
+    ./autostart.nix
+    ./environment.nix
+    ./permissions.nix
+    ./look_and_feel.nix
+    ./input.nix
+    ./keybinds.nix
+    ./monitors.nix
+    ./windows_and_workspaces.nix
   ];
 
   wayland.windowManager.hyprland = {
