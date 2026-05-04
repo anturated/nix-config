@@ -13,6 +13,6 @@ in
   options.ceirios.packages = mkOption {
     type = types.lazyAttrsOf types.package;
     default = { };
-    descripton = "A set of packages to install";
+    description = "A set of packages to install";
   };
 }

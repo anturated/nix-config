@@ -3,6 +3,6 @@
 {
   imports = [
     ./desant.nix
-    ./root
+    ./root.nix
   ];
 }
