@@ -1,9 +1,9 @@
 { pkgs, ... }:
 
 {
-  ceirios.packages = [
-    pkgs.mangohud
-  ];
+  ceirios.packages = {
+    inherit (pkgs) mangohud;
+  };
 
   xdg.configFile."MangoHud/MangoHud.conf".text = ''
     ################ PERFORMANCE #################

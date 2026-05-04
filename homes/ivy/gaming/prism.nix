@@ -1,19 +1,19 @@
 { pkgs, ... }:
 
 {
-  ceirios.packages = with pkgs; [
-    (prismlauncher.override {
+  ceirios.packages = {
+    prismlauncher = pkgs.prismlauncher.override {
       # Add binary required by some mod
-      additionalPrograms = [ ffmpeg ];
+      additionalPrograms = [ pkgs.ffmpeg ];
 
       # Change Java runtimes available to Prism Launcher
       jdks = [
         # graalvm-ce
-        graalvmPackages.graalvm-ce
-        zulu8
-        zulu17
-        zulu
+        pkgs.graalvmPackages.graalvm-ce
+        pkgs.zulu8
+        pkgs.zulu17
+        pkgs.zulu
       ];
-    })
-  ];
+    };
+  };
 }
