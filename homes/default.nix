@@ -15,7 +15,7 @@ let
   usernames = builtins.attrNames users;
 in
 {
-  home-mamanger = {
+  home-manager = {
     verbose = true;
     useUserPackages = true;
     useGlobalPkgs = true;

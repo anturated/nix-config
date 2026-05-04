@@ -15,5 +15,7 @@
     ./software
     ./system
     ./users
+
+    ./extras.nix
   ];
 }
