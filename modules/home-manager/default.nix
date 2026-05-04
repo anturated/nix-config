@@ -8,5 +8,6 @@
     ./environment
     ./fonts.nix
     ./revision.nix
+    ./profiles.nix
   ];
 }
