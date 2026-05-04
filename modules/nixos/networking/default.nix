@@ -6,7 +6,8 @@
     ./systemd.nix
   ];
 
-  networking = {
-    hostName = host;
-  };
+  # set in mkHost to avoid duplication
+  # networking = {
+  #   hostName = host;
+  # };
 }

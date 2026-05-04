@@ -4,14 +4,22 @@ let
   inherit (inputs) nixpkgs self;
   inherit (nixpkgs) lib;
 
-  mkHost = self.lib.mkHost;
-
   # auto-discover from machines/
   machineNames = builtins.attrNames (
     lib.filterAttrs (_: type: type == "directory") (builtins.readDir (self + "/machines"))
   );
+
+  discovered = lib.genAttrs machineNames (_: { });
+
+  mkHosts = lib.mapAttrs self.lib.mkHost;
 in
 {
-  # generate configuration for given machine
-  nixosConfigurations = lib.genAttrs machineNames (name: mkHost { inherit name inputs; });
+  lib = import ./lib { inherit lib inputs; };
+
+  nixosConfigurations = mkHosts discovered // {
+    # manual overrides go here
+    # adamantite = {
+    #   class = "iso";
+    # };
+  };
 }
