@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./pam.nix
     ./polkit.nix
   ];
 }
