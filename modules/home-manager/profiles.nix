@@ -2,8 +2,8 @@
 
 {
   config = {
-    garden.profiles = {
-      inherit (osConfig.garden.profiles)
+    ceirios.profiles = {
+      inherit (osConfig.ceirios.profiles)
         graphical
         headless
         workstation
