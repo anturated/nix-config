@@ -1,8 +1,8 @@
-{ ... }:
+{ config, ... }:
 
 {
   programs.steam = {
-    enable = true;
+    enable = config.ceirios.profiles.gaming;
 
     # Open ports in the firewall for Steam Remote Play
     remotePlay.openFirewall = true;

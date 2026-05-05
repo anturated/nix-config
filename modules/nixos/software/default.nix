@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./docker.nix
     ./graphical.nix
     ./gamemode.nix
     ./steam.nix
