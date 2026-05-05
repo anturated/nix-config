@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 let
-  hasOffload = config.machine.gpu.nvidia.prime == "offload";
+  hasOffload = config.ceirios.hardware.prime == "offload";
   useOffload = if hasOffload then "1" else "0";
 in
 {

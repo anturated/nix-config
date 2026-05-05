@@ -1,128 +1,66 @@
 {
-  description = "big hopes for this one";
+  description = "This might as well be a distro at this point.";
+
+  outputs = inputs: import ./modules/flake { inherit inputs; };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # might switch to this if i care
+    # nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+    nixpkgs = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      ref = "nixos-unstable";
+    };
 
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    # stable branch is here because nvim likes breaking changes.
+    # should be used as pkgsStable
+    nixpkgs-stable = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      ref = "nixos-25.11";
+    };
 
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    # better hardware support for laptops and such
+    nixos-hardware = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixos-hardware";
+    };
 
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
+    # userspace configs
+    home-manager = {
+      type = "github";
+      owner = "nix-community";
+      repo = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
 
-  outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      nixpkgs-stable,
-      nixos-hardware,
-      nix-cachyos-kernel,
-      home-manager,
-      spicetify-nix,
-      nix-index-database,
-      ...
-    }:
-    let
-      # auto-discover machines from ./machines/ subdirectories
-      machineNames =
-        let
-          entries = builtins.readDir ./machines;
-        in
-        builtins.attrNames (nixpkgs.lib.filterAttrs (_name: kind: kind == "directory") entries);
+    ### extra stuff ###
 
-      machines = map (
-        name:
-        {
-          inherit name;
-        }
-        // import ./machines/${name}/meta.nix
-      ) machineNames;
-
-      kernelOverlays = nix-cachyos-kernel.overlays.pinned;
-    in
-    {
-      # map configs to machines
-      nixosConfigurations = nixpkgs.lib.listToAttrs (
-        map (machine: {
-          # make them accessible by flake.nix#machine
-          name = machine.name;
-          value = nixpkgs.lib.nixosSystem {
-            # inherit stuff
-            system = "${machine.arch}";
-            specialArgs = {
-              host = machine.name;
-              user = machine.user;
-              inherit inputs;
-
-              pkgs-stable = nixpkgs-stable.legacyPackages.${machine.arch};
-              spicetifyPkgs = spicetify-nix.legacyPackages.x86_64-linux;
-            };
-
-            # nixos modules
-            modules = [
-              # machine config
-              ./machines/${machine.name}/config.nix
-              ./modules/nixos/default.nix
-
-              # custom #
-              spicetify-nix.nixosModules.default
-              # TODO: make conditional
-              nixos-hardware.nixosModules.lenovo-legion-15arh05h
-              # nix index + comma
-              nix-index-database.nixosModules.nix-index
-              {
-                programs.nix-index-database.comma.enable = true;
-                # Do NOT also add comma to systemPackages — the module handles it
-              }
-
-              # cachyos kernel  TODO: make optional?
-              {
-                nixpkgs.overlays = [ kernelOverlays ];
-                nix.settings = {
-                  substituters = [ "https://attic.xuyh0120.win/lantian" ];
-                  trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
-                };
-              }
-
-              # home manager config
-              home-manager.nixosModules.home-manager
-              (
-                { pkgs, ... }:
-                {
-                  home-manager = {
-                    useUserPackages = true;
-                    useGlobalPkgs = true;
-                    # home-manager modules
-                    users.${machine.user}.imports = [
-                      ./machines/${machine.name}/home.nix
-                      ./modules/home-manager/default.nix
-                    ];
-
-                    # inherit stuff to home-manager
-                    extraSpecialArgs = {
-                      host = machine.name;
-                      user = machine.user;
-                      inherit inputs;
-                    };
-                  };
-                  # enable cli for quick switching
-                  environment.systemPackages = [
-                    pkgs.home-manager
-                  ];
-                }
-              )
-
-            ];
-          };
-        }) machines
-      );
+    # spotify themes & plugins
+    spicetify = {
+      type = "github";
+      owner = "Gerg-L";
+      repo = "spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # need this for comma to work
+    nix-index-database = {
+      type = "github";
+      owner = "nix-community";
+      repo = "nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # cachyos kernel, might remove
+    nix-cachyos-kernel = {
+      type = "github";
+      owner = "xddxdd";
+      repo = "nix-cachyos-kernel";
+      ref = "release";
+    };
+  };
 }
