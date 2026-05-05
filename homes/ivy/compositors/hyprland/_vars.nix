@@ -14,5 +14,5 @@
 
   # Keybinds
   mainMod = "SUPER"; # sets "Windows" key as main modifier
-  brDevice = "amdgpu_bl1"; # brightness backlight device
+  brDevice = "amdgpu_bl2"; # brightness backlight device
 }
