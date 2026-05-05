@@ -24,7 +24,8 @@
       };
 
       monitors = {
-        eDP-1.refresh-rate = 120;
+        # why 2 :cry: it was 1 before
+        eDP-2.refresh-rate = 120;
         DP-1 = { };
       };
     };
