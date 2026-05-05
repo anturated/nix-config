@@ -8,5 +8,6 @@
     ./nixpkgs.nix
     ./users
     ./system
+    ./programs.nix
   ];
 }
