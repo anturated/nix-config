@@ -21,7 +21,7 @@ in
   config.boot.kernelParams = [
     # NixOS produces many wakeups per second, which is bad for battery life.
     # This kernel parameter disables the timer tick on the last 4 cores
-    "nohz_full=4-7"
+    "nohz_full=4-15"
 
     # make stack-based attacks on the kernel harder
     "randomize_kstack_offset=on"
