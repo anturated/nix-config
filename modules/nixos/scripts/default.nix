@@ -3,8 +3,7 @@
 {
   imports = [
     ./chwal.nix
-    ./kale.nix
-    ./kaled.nix
+    ./kale
     ./rebuild.nix
   ];
 }
