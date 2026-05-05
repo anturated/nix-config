@@ -7,5 +7,6 @@
     ./greetd.nix
     ./misc.nix
     ./revision.nix
+    ./xdg-portals.nix
   ];
 }

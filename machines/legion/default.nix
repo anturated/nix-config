@@ -8,6 +8,10 @@
   ceirios = {
     profiles = {
       laptop = true;
+      workstation = true;
+      graphical = true;
+      gaming = true;
+      coding = true;
     };
 
     hardware = {
