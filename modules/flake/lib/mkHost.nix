@@ -1,6 +1,6 @@
 { lib, inputs }:
 let
-  inherit (inputs) nixpkgs self home-manager;
+  inherit (inputs) self;
 
   inherit (lib)
     recursiveUpdate
