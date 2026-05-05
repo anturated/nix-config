@@ -7,5 +7,6 @@
     ./gui
     ./ricing
     ./tui
+    ./lsps.nix
   ];
 }
