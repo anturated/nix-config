@@ -1,15 +1,31 @@
-{ ... }:
+{ lib, inputs, ... }:
 
+let
+  inherit (lib)
+    filterAttrs
+    mapAttrs
+    isType
+    mkForce
+    ;
+
+  flakeInputs = filterAttrs (name: value: (isType "flake" value) && (name != "self")) inputs;
+in
 {
   nix = {
+    # pin the registry to avoid downloading and evaluating a new nixpkgs version everytime
+    registry = (mapAttrs (_: flake: { inherit flake; }) flakeInputs) // {
+      # https://github.com/NixOS/nixpkgs/pull/388090
+      nixpkgs = mkForce { flake = inputs.nixpkgs; };
+    };
+
+    # disable usage of nix channels
+    channel.enable = false;
+
     settings = {
       # Free up to 20GiB whenever there is less than 5GB left.
       # this setting is in bytes, so we multiply with 1024 by 3
       min-free = 5 * 1024 * 1024 * 1024;
       max-free = 20 * 1024 * 1024 * 1024;
-
-      # disable usage of nix channels
-      channel.enable = false;
 
       # very dangerous bleeding edge stuff here
       experimental-features = [

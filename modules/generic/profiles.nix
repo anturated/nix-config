@@ -12,5 +12,6 @@ in
     gaming = mkEnableOption "Gaming";
     laptop = mkEnableOption "Laptop";
     server = mkEnableOption "Server";
+    virtualization = mkEnableOption "Virtualization";
   };
 }

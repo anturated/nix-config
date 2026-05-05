@@ -1,7 +1,7 @@
-{ lib, osConfig, ... }:
+{ lib, config, ... }:
 
 let
-  inherit (osConfig.ceirios.hardware) monitors mainMonitor;
+  inherit (config.ceirios.hardware) monitors mainMonitor;
 
   mon = monitors.${mainMonitor};
 in
