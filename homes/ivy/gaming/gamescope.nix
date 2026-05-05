@@ -1,30 +1,27 @@
 { lib, config, ... }:
 
 let
-  cfg = config.ceirios.hardware;
-
-  hasMonitor = cfg.monitors != { };
-  mainMonitor = cfg.monitors.${cfg.mainMonitor};
+  inherit (config.ceirios.hardware) monitors mainMonitor;
 in
 {
   programs.gamescope = {
     enable = true;
-    args = lib.mkIf hasMonitor [
+    args = lib.mkIf (monitors != { }) [
       # window size
       "-W"
-      "${toString mainMonitor.w}"
+      "${toString mainMonitor.width}"
       "-H"
-      "${toString mainMonitor.h}"
+      "${toString mainMonitor.height}"
 
       # game resolution (only used in upscaling)
       # "-w"
-      # "${toString mainMonitor.w}"
+      # "${toString mainMonitor.width}"
       # "-h"
-      # "${toString mainMonitor.h}"
+      # "${toString mainMonitor.height}"
 
       # frame cap
       "-r"
-      "${toString mainMonitor.hz}"
+      "${toString mainMonitor.refresh-rate}"
 
       # wayland stuff
       "--backend"

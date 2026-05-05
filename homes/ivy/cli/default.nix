@@ -6,5 +6,6 @@
 
     ./fastfetch.nix
     ./starship.nix
+    ./misc.nix
   ];
 }

@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   # https://wiki.hypr.land/Configuring/Configuring-Hyprland/
@@ -15,6 +15,10 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+  };
+
+  ceirios.packages = {
+    inherit (pkgs) hyprshot hyprsunset;
   };
 
   # xdg-desktop-portal-hyprland config
