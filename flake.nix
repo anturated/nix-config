@@ -54,13 +54,5 @@
       repo = "nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # cachyos kernel, might remove
-    nix-cachyos-kernel = {
-      type = "github";
-      owner = "xddxdd";
-      repo = "nix-cachyos-kernel";
-      ref = "release";
-    };
   };
 }
