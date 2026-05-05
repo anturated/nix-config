@@ -22,7 +22,7 @@ in
 
       immediate = on
       fullscreen = on
-      workspace = 2
+      workspace = 2 silent
     }
 
     windowrule {
@@ -31,7 +31,7 @@ in
 
       immediate = on
       fullscreen = on
-      workspace = 2
+      workspace = 2 silent
     }
 
     windowrule {
@@ -39,14 +39,14 @@ in
       match:class = gamescope
 
       fullscreen = on
-      workspace = 2
+      workspace = 2 silent
     }
 
     windowrule {
       name = browser-no-borders
       match:class = ^(vivaldi-stable)$|^(zen)$
 
-      workspace = 1
+      workspace = 1 silent
       border_size = 0
     }
 
@@ -74,14 +74,14 @@ in
       name = messagers
       match:class = ^(vesktop)$|^(org.telegram.desktop)$
 
-      workspace = 3
+      workspace = 3 silent
     }
 
     windowrule {
       name = music-apps
       match:class = ^(spotify)$|^(ncmpcpp-custom)$
 
-      workspace = 4
+      workspace = 4 silent
     }
 
     windowrule {
@@ -96,7 +96,7 @@ in
       name = game-launchers
       match:class = ^(steam)$|^(com.usebottles.bottles)$|^(org.prismlauncher.PrismLauncher)$
 
-      workspace = 5
+      workspace = 5 silent
     }
 
     # vlc fullscreen popup
