@@ -4,7 +4,6 @@
 let
   inherit (lib.lists) optionals;
   inherit (lib.options) mkEnableOption;
-  inherit (config.ceirios.profiles) gaming;
   cfg = config.ceirios.system;
 in
 {
@@ -112,8 +111,5 @@ in
     # rd prefix means systemd-udev will be used instead of initrd
     "systemd.show_status=auto"
     "rd.systemd.show_status=auto"
-  ]
-  ++ optionals gaming [
-    "ntsync"
   ];
 }
