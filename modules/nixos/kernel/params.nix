@@ -4,6 +4,8 @@
 let
   inherit (lib.lists) optionals;
   inherit (lib.options) mkEnableOption;
+  inherit (config.ceirios.profiles) virtualization;
+
   cfg = config.ceirios.system;
 in
 {
@@ -73,9 +75,6 @@ in
     # disable the intel_idle (it stinks anyway) driver and use acpi_idle instead
     "idle=nomwait"
 
-    # enable IOMMU for devices used in passthrough and provide better host performance
-    "iommu=pt"
-
     # disable usb autosuspend
     "usbcore.autosuspend=-1"
 
@@ -111,5 +110,9 @@ in
     # rd prefix means systemd-udev will be used instead of initrd
     "systemd.show_status=auto"
     "rd.systemd.show_status=auto"
+  ]
+  ++ optionals virtualization [
+    # enable IOMMU for devices used in passthrough and provide better host performance
+    "iommu=pt"
   ];
 }
