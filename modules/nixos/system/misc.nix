@@ -9,6 +9,9 @@ let
 in
 {
   config = mkIf config.ceirios.profiles.graphical {
+    # file structure normalifyer
+    programs.nix-ld.enable = true;
+
     services = {
       # enable GVfs, a userspace virtual filesystem.
       gvfs.enable = true;
@@ -16,11 +19,8 @@ in
       # storage daemon required for a bunch of stuff
       udisks2.enable = true;
 
-      # file structure normalifyer
-      programs.nix-ld.enable = true;
-
       # mouse settings
-      services.ratbagd.enable = true;
+      ratbagd.enable = true;
 
       dbus = {
         enable = true;

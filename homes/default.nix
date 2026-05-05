@@ -6,6 +6,7 @@
   inputs,
   inputs',
   host,
+  pkgsStable,
   ...
 }:
 
@@ -37,6 +38,9 @@ in
         inputs
         inputs'
         host
+
+        # pass a stable branch of nixpkgs
+        pkgsStable
         ;
     };
 

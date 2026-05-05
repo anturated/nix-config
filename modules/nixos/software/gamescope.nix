@@ -1,7 +1,9 @@
-{ lib, config, ... }:
+{ lib, osConfig, ... }:
 
 let
-  inherit (config.ceirios.hardware) monitors mainMonitor;
+  inherit (osConfig.ceirios.hardware) monitors mainMonitor;
+
+  mon = monitors.${mainMonitor};
 in
 {
   programs.gamescope = {
@@ -9,9 +11,9 @@ in
     args = lib.mkIf (monitors != { }) [
       # window size
       "-W"
-      "${toString mainMonitor.width}"
+      "${toString mon.width}"
       "-H"
-      "${toString mainMonitor.height}"
+      "${toString mon.height}"
 
       # game resolution (only used in upscaling)
       # "-w"
@@ -21,7 +23,7 @@ in
 
       # frame cap
       "-r"
-      "${toString mainMonitor.refresh-rate}"
+      "${toString mon.refresh-rate}"
 
       # wayland stuff
       "--backend"

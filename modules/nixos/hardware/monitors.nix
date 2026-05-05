@@ -12,7 +12,7 @@ let
 in
 {
   options.ceirios.hardware = {
-    mainMonitor = {
+    mainMonitor = mkOption {
       type = str;
       default = builtins.elemAt (builtins.attrNames config.ceirios.hardware.monitors) 0;
       description = "Main monitor's name.";

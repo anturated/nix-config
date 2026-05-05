@@ -1,7 +1,7 @@
-{ lib, config, ... }:
+{ osConfig, ... }:
 
 let
-  inherit (config.ceirios.hardware) cpu gpu;
+  inherit (osConfig.ceirios.hardware) cpu gpu;
 
   isHybrid = gpu == "nv-hybrid";
 

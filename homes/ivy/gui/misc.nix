@@ -16,6 +16,7 @@
       coppwr
       anydesk
       ;
+
+    inherit (pkgs.kdePackages) kate ark;
   };
-  inherit (pkgs.kdePackages) kate ark;
 }
