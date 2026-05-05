@@ -34,18 +34,5 @@ in
         Policy.AutoEnable = true;
       };
     };
-
-    # bluetooth fix (i honestly have no idea why it refuses to work)
-    # TODO: remove if sap fixes it
-    # systemd.services.unblock-bluetooth = {
-    #   description = "Unblock Bluetooth on startup";
-    #   wantedBy = [ "multi-user.target" ];
-    #   after = [ "bluetooth.service" ];
-    #   serviceConfig = {
-    #     Type = "oneshot";
-    #     ExecStart = "${pkgs.util-linux}/bin/rfkill unblock bluetooth";
-    #     RemainAfterExit = true;
-    #   };
-    # };
   };
 }
