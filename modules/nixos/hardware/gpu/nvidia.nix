@@ -67,7 +67,7 @@ in
         powerManagement.enable = true;
 
         # disable open drivers cuz i'm not sure
-        open = false;
+        open = true;
 
         # we are likely on wayland so this is useless
         nvidiaSettings = false;
