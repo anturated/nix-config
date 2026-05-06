@@ -6,8 +6,12 @@
 }:
 
 let
-  quick = config.ceirios.system.login.autoLogin;
-  user = config.ceirios.system.mainUser;
+  inherit (lib) concatStringsSep;
+  inherit (config.ceirios.system.login) autoLogin;
+  inherit (config.ceirios.system) mainUser;
+
+  enable = config.ceirios.profiles.graphical;
+  sessionData = config.services.displayManager.sessionData.desktops;
 in
 {
   options.ceirios.system.login = {
@@ -15,16 +19,33 @@ in
   };
 
   config.services.greetd = {
-    enable = true;
+    inherit enable;
+    restart = true;
+    useTextGreeter = true;
+
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd start-hyprland";
-        user = "${user}";
+        user = "greeter";
+        command = concatStringsSep " " [
+          "${pkgs.tuigreet}/bin/tuigreet"
+          "--time" # display date & time
+          "--remember" # remember last username
+          "--remember-user-session" # remember user's last session
+          "--asterisks" # password turns into ****
+          "--sessions '${
+            concatStringsSep ":" [
+              "${sessionData}/share/xsessions"
+              "${sessionData}/share/wayland-sessions"
+            ]
+          }'"
+        ];
       };
-      initial_session = lib.mkIf quick {
+
+      initial_session = lib.mkIf autoLogin {
         command = "start-hyprland";
-        user = "${user}";
+        user = "${mainUser}";
       };
+
     };
   };
 }
