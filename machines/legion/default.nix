@@ -31,7 +31,6 @@
     };
 
     system = {
-      login.autoLogin = true;
       stateVersion = "25.05";
       flakeDir = "$HOME/Documents/projects/nix-config";
     };
