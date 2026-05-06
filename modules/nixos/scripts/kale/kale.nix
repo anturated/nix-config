@@ -13,17 +13,23 @@ in
 
       # defaults
       USE_HYPR=1
+      USE_POWER=1
+      USE_NTSYNC=1
+
       USE_OFFLOAD=${useOffload}
+
       USE_GAMEMODE=1
       USE_GAMEMODE_DAEMON=0
       USE_GAMEMODE_BYPASS=0
+
       USE_MANGOHUD=1
-      USE_POWER=1
+
+      USE_FSR4=1 # why not
       USE_PROTON_WAYLAND=1
       USE_PROTON_LOG=0
       USE_STEAMDECK=0
-      USE_NTSYNC=1
       USE_GAMESCOPE=0
+
 
       # check flags
       while getopts ":mgGbnCHOMPlsx" opt; do
@@ -34,6 +40,7 @@ in
             USE_MANGOHUD=0
             USE_POWER=0
             USE_PROTON_WAYLAND=0
+            USE_FSR4=1
             ;;
           # env vars
           x) USE_PROTON_WAYLAND=0 ;;
@@ -118,6 +125,7 @@ in
       [ $USE_PROTON_LOG -eq 1 ] && ENV_VARS+=("PROTON_LOG=1")
       [ $USE_STEAMDECK -eq 1 ] && ENV_VARS+=("SteamDeck=1")
       [ $USE_NTSYNC -eq 1 ] && ENV_VARS+=("PROTON_ENABLE_NTSYNC=1")
+      [ $USE_FSR4 -eq 1 ] && ENV_VARS+=("PROTON_FSR4_UPGRADE=1")
       if [ $USE_GAMESCOPE -eq 1 ]; then
         if [ $USE_MANGOHUD -eq 1 ]; then
           ENV_VARS+=("MANGOHUD=1")
