@@ -85,36 +85,23 @@ in
         if [ -n "$GM_PID" ]; then
           kill "$GM_PID" 2>/dev/null || true
         fi
-        if [ $USE_POWER -eq 1 ]; then
-          dbus-send --system --print-reply \
-                    --dest=com.anturated.kaled \
-                    /com/anturated/kaled com.anturated.kaled.UnregisterClient \
-                    int32:$MY_PID
-        fi
-        if [ $USE_HYPR -eq 1 ]; then
-          ${pkgs.hyprland}/bin/hyprctl reload
-        fi
+        # unregister
+        dbus-send --system --print-reply \
+                  --dest=com.anturated.kaled \
+                  /com/anturated/kaled com.anturated.kaled.UnregisterClient \
+                  int32:$MY_PID
       }
       trap cleanup EXIT INT TERM HUP
 
-      # remove hyprland beauty in favor of the frames
-      if [ $USE_HYPR -eq 1 ]; then
-        ${pkgs.hyprland}/bin/hyprctl keyword animations:enabled 0
-        ${pkgs.hyprland}/bin/hyprctl keyword decoration:blur:enabled 0
-        ${pkgs.hyprland}/bin/hyprctl keyword render:direct_scanout 1
-        ${pkgs.hyprland}/bin/hyprctl keyword decoration:shadow:enabled 0
-        ${pkgs.hyprland}/bin/hyprctl keyword decoration:rounding 0
-        ${pkgs.hyprland}/bin/hyprctl keyword general:gaps_in 0
-        ${pkgs.hyprland}/bin/hyprctl keyword general:gaps_out 0
-      fi
-
-      # apply power profiles
-      if [ $USE_POWER -eq 1 ]; then
-        dbus-send --system --print-reply \
-                  --dest=com.anturated.kaled \
-                  /com/anturated/kaled com.anturated.kaled.RegisterClient \
-                  int32:$MY_PID
-      fi
+      # register in daemon for tweaks
+      dbus-send --system --print-reply \
+                --dest=com.anturated.kaled \
+                /com/anturated/kaled com.anturated.kaled.RegisterClient \
+                int32:$MY_PID\
+                string:$HYPRLAND_INSTANCE_SIGNATURE \
+                string:$XDG_RUNTIME_DIR \
+                boolean:$([ $USE_HYPR -eq 1 ] && echo true || echo false) \
+                boolean:$([ $USE_POWER -eq 1 ] && echo true || echo false)
 
       # pop a gamemode daemon (nightreign stare)
       if [ $USE_GAMEMODE_DAEMON -eq 1 ]; then

@@ -12,7 +12,7 @@ let
     name = "kaled.py";
     destination = "/bin/kaled.py";
     executable = true;
-    text = "#!${pythonEnv}/bin/python3 " + builtins.readFile ./kaled.py;
+    text = "#!${pythonEnv}/bin/python3\n" + builtins.readFile ./kaled.py;
   };
 in
 {
@@ -41,6 +41,11 @@ in
     description = "Kale Daemon";
     after = [ "dbus.service" ];
     wantedBy = [ "multi-user.target" ];
+    path = [
+      pkgs.hyprland
+      pkgs.tuned
+      pkgs.sudo
+    ];
     serviceConfig = {
       ExecStart = "${kaleDaemon}/bin/kaled.py";
       Restart = "always";
