@@ -1,4 +1,3 @@
-# ripped from isabelroses
 { lib, config, ... }:
 
 let
@@ -12,7 +11,7 @@ in
     hardware.cpu.intel.updateMicrocode = true;
 
     boot = {
-      kernelModules = [ ] ++ optionals useVirt [ "kvm-amd" ];
+      kernelModules = optionals useVirt [ "kvm-intel" ];
       kernelParams = [
         "i915.fastboot=1"
         "enable_gvt=1"
