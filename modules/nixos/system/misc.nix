@@ -12,12 +12,6 @@ in
     # file structure normalifyer
     programs.nix-ld.enable = true;
 
-    # need this for gpg signing
-    programs.gnupg.agent = {
-      enable = true;
-      pinentryPackage = pkgs.pinentry-qt;
-    };
-
     services = {
       # enable GVfs, a userspace virtual filesystem.
       gvfs.enable = true;

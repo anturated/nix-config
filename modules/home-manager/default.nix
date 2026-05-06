@@ -8,6 +8,7 @@
     ./environment
     ./revision.nix
     ./profiles.nix
+    ./software
     ./defaults.nix
   ];
 }

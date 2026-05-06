@@ -13,17 +13,13 @@ let
     enableGnomeKeyring = true;
     gnupg = {
       enable = true;
-      noAutostart = true;
-      storeOnly = true;
     };
   };
 in
 {
   security.pam = mkMerge [
     {
-      # allow screen lockers to also unlock the screen
-      # (e.g. swaylock, gtklock)
-      # NOTE: whar
+      # allow screenlocks to unlock gpg & keyring
       services = {
         swaylock.text = "auth include login";
         gtklock.text = "auth include login";
