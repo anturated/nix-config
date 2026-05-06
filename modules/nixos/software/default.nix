@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./comma.nix
     ./direnv.nix
     ./docker.nix
     ./graphical.nix
