@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgsStable, ... }:
 
 {
   ceirios.packages = {
-    inherit (pkgs) bottles;
+    # NOTE: using stable here because openldap won't pass tests
+    inherit (pkgsStable) bottles;
   };
 }
