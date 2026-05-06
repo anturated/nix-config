@@ -69,7 +69,7 @@ in
           # these require acpid
 
           # watch ac plug/unplug
-          battery_detection = true;
+          battery_detection = false; # INFO: broken, see ppdSettings.battery below
 
           # watch acpi stuff like hardware key profile switch (Fn+Q, Fn+L, etc.)
           # sysfs_acpi_monitor = true; # WARN: looks like it's not supported here yet :\
@@ -108,6 +108,14 @@ in
       ACTION=="change", SUBSYSTEM=="platform", \
         ATTR{/sys/firmware/acpi/platform_profile}=="performance", \
         RUN+="${pkgs.tuned}/bin/tuned-adm profile ceirios-performance"
+
+      ACTION=="change", SUBSYSTEM=="power_supply", \
+        ATTR{type}=="Mains", ATTR{online}=="0", \
+        RUN+="${pkgs.tuned}/bin/tuned-adm profile ceirios-powersave-bat"
+
+      ACTION=="change", SUBSYSTEM=="power_supply", \
+        ATTR{type}=="Mains", ATTR{online}=="1", \
+        RUN+="${pkgs.tuned}/bin/tuned-adm profile ceirios-balanced"
     '';
   };
 }
