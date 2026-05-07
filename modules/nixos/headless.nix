@@ -5,7 +5,7 @@ let
   inherit (lib.modules) mkIf mkForce;
 in
 {
-  config = mkIf config.ceirios.profiles.headless.enable {
+  config = mkIf config.ceirios.profiles.headless {
     # print the URL instead on servers
     environment.variables.BROWSER = "echo";
 
