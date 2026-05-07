@@ -22,7 +22,11 @@ in
   config.boot.kernelParams = [
     # NixOS produces many wakeups per second, which is bad for battery life.
     # This kernel parameter disables the timer tick on the last 4 cores
-    "nohz_full=4-15"
+    # "nohz_full=4-15"
+    # TODO: test if it matters at all
+    # INFO: stalls game threads
+    # can mess with games pinning processes to some threads
+    # might cause worse performance in games
 
     # make stack-based attacks on the kernel harder
     "randomize_kstack_offset=on"
@@ -45,15 +49,15 @@ in
 
     # blocks access to all kernel memory, even preventing administrators from being able to inspect and probe the kernel
     "lockdown=confidentiality"
+    # INFO: breaks GPU drivers
+    # might mess with gpu drivers accessing kernel memory
+    # might cause stuff to hang
 
     # enable buddy allocator free poisoning
     "page_poison=on"
 
     # performance improvement for direct-mapped memory-side-cache utilization, reduces the predictability of page allocations
     "page_alloc.shuffle=1"
-
-    # for debugging kernel-level slab issues
-    "slub_debug=FZP"
 
     # disable sysrq keys. sysrq is seful for debugging, but also insecure
     "sysrq_always_enabled=0" # 0 | 1 # 0 means disabled
