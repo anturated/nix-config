@@ -5,9 +5,7 @@ let
 in
 {
   options.ceirios.hardware.bluetooth = {
-    enable = mkEnableOption "bluetooth support" // {
-      default = true;
-    };
+    enable = mkEnableOption "bluetooth support";
   };
 
   config = mkIf config.ceirios.hardware.bluetooth.enable {
