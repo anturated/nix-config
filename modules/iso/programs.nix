@@ -1,4 +1,4 @@
-{ pkgs, self', ... }:
+{ pkgs, ... }:
 
 {
   # disable all installer tools and only bring the ones that we explicitly need
@@ -17,5 +17,5 @@
   programs.git.package = pkgs.gitMinimal;
 
   # needed packages for the installer
-  environment.systemPackages = [ self'.packages.iztaller ];
+  imports = [ ./llin ];
 }
