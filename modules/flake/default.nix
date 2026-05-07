@@ -16,10 +16,10 @@ in
 {
   lib = import ./lib { inherit lib inputs; };
 
-  nixosConfigurations = mkHosts discovered // {
+  nixosConfigurations = mkHosts (discovered // {
     # manual overrides go here
     saeth = {
       class = "iso";
     };
-  };
+  });
 }
