@@ -75,7 +75,7 @@ mount "$boot_part" /mnt/boot
 
 # copy across the iso's nixos flake to the target system
 echo "  Copying flake..."
-mkdir -p /mnt/etc/nixos
+mkdir -p /mnt/etc/nixos/machines/"$hostname" # extend it all the way so we can write hw
 cp -rT /iso/flake /mnt/etc/nixos
 
 # even if we don't need a new host we are going to have to generate a new hardware config
