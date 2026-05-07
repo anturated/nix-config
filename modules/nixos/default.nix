@@ -8,6 +8,7 @@
     ./boot
     ./environment
     ./hardware
+    ./headless.nix
     ./kernel
     ./networking
     ./scripts
