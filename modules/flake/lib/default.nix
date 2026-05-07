@@ -4,9 +4,21 @@
 { lib, inputs }:
 
 lib.fixedPoints.makeExtensible (final: {
+  helpers = import ./helpers.nix { inherit lib; };
   mkHost = import ./mkHost.nix { inherit inputs lib; };
   validators = import ./validators.nix { inherit lib; };
 
+  inherit (final.helpers)
+    mkPubs
+    giturl
+    filterNixFiles
+    importNixFiles
+    importNixFilesAndDirs
+    boolToNum
+    containsStrings
+    indexOf
+    intListToStringList
+    ;
   inherit (final.validators)
     ifTheyExist
     anyHome

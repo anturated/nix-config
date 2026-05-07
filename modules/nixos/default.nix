@@ -12,6 +12,7 @@
     ./networking
     ./scripts
     ./security
+    ./secrets.nix
     ./software
     ./system
     ./users

@@ -54,5 +54,13 @@
       repo = "nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # secrets
+    sops = {
+      type = "github";
+      owner = "Mic92";
+      repo = "sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

@@ -3,6 +3,7 @@
 {
   imports = [
     ./networkManager.nix
+    ./openssh.nix
     ./systemd.nix
   ];
 

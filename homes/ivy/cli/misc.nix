@@ -5,7 +5,6 @@
     inherit (pkgs)
       wget
       curl
-      git
       brightnessctl
       playerctl
       zip
@@ -23,7 +22,6 @@
       bat
       zoxide
       killall
-      gh
 
       # no idea
       usbutils

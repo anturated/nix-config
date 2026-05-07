@@ -6,6 +6,7 @@
     ./gaming
     ./gui
     ./ricing
+    ./system
     ./tui
     ./lsps.nix
   ];
