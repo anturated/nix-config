@@ -18,8 +18,8 @@ in
 
   nixosConfigurations = mkHosts discovered // {
     # manual overrides go here
-    # adamantite = {
-    #   class = "iso";
-    # };
+    saeth = {
+      class = "iso";
+    };
   };
 }
