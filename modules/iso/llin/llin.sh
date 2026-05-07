@@ -26,7 +26,7 @@ echo "  Install to: $drive"
 echo "• ──────────────────────────────────────────────── •"
 
 # last warning
-gum confirm "Wipe <disk> and set up flake?" \
+gum confirm "Wipe $drive and set up flake?" \
     --affirmative "yes" \
     --negative "no" \
     --default=false \
@@ -36,7 +36,7 @@ gum confirm "Wipe <disk> and set up flake?" \
     --unselected.foreground 15 \
     --unselected.background 16 \
     --padding "0 2" \
-    && echo "  Formatting <disk>..."
+    && echo "  Formatting $drive..."
 
 # create some partitions
 parted "$drive" -- mklabel gpt
@@ -108,7 +108,7 @@ fi
 echo "  We should be good."
 echo ""
 echo "  Run this command to finish installation:"
-echo "  nixos-install --flake /mnt/etc/nixos#$hostname ''${installArgs[*]}"
+echo "  nixos-install --flake /mnt/etc/nixos#$hostname ${installArgs[*]}"
 
 gum confirm "Want me to run it?" \
     --affirmative "yes" \
@@ -120,6 +120,6 @@ gum confirm "Want me to run it?" \
     --unselected.background 16 \
     --padding "1 2" \
     --no-show-help \
-&& nixos-install --flake "/mnt/etc/nixos#$hostname" "''${installArgs[*]}" \
+&& nixos-install --flake "/mnt/etc/nixos#$hostname" "${installArgs[*]}" \
 || echo "  Ok."
  echo "• ──────────────────────────────────────────────── •"
