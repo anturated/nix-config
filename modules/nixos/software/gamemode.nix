@@ -1,9 +1,9 @@
-{ ... }:
+{ config, ... }:
 
 {
   # NOTE: gamemode just has to be system level for some reason
   programs.gamemode = {
-    enable = true;
+    enable = config.ceirios.profiles.gaming;
     enableRenice = true;
   };
 }

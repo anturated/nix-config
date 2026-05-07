@@ -1,22 +1,30 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
-  ceirios.packages = {
-    inherit (pkgs)
-      pavucontrol
-      gnome-calculator
-      nautilus
-      eog
-      piper
-      vlc
-      losslesscut-bin
-      okteta
-      gnome-disk-utility
-      transmission_4-gtk
-      coppwr
-      anydesk
-      ;
+  config = lib.mkIf config.ceirios.profiles.graphical {
+    ceirios.packages = {
+      inherit (pkgs)
+        # settings
+        pavucontrol
+        piper
 
-    inherit (pkgs.kdePackages) kate ark;
+        # media viewing
+        cosmic-files
+        eog
+        vlc
+        okteta
+
+        # tools
+        coppwr
+        transmission_4-gtk
+        losslesscut-bin
+        anydesk
+        ;
+    };
   };
 }

@@ -1,15 +1,22 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   ceirios.packages = {
     inherit (pkgs)
+      # these are just nice to have
       yazi
       btop
       lazygit
       gdu
-      bluetui
       ;
-
+  }
+  // lib.optionalAttrs config.ceirios.profiles.graphical {
+    inherit (pkgs) bluetui;
     nvtop = pkgs.nvtopPackages.full;
   };
 }

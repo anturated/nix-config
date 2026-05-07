@@ -1,8 +1,8 @@
-{ ... }:
+{ config, ... }:
 
 {
   programs.vesktop = {
-    enable = true;
+    enable = config.ceirios.profiles.graphical;
 
     settings = {
       # disable auto update because it breaks vencord sometimes i guess

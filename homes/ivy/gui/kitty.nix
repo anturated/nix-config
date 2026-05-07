@@ -1,8 +1,8 @@
-{ ... }:
+{ config, ... }:
 
 {
   programs.kitty = {
-    enable = true;
+    enable = config.ceirios.profiles.graphical;
     settings = {
       include = "current-theme.conf";
 

@@ -10,7 +10,6 @@
         laptop
         server
         gaming
-        coding
         ;
     };
   };

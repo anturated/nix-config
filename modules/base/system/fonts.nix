@@ -1,8 +1,13 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 # TODO: do this properly
 {
-  fonts = {
+  fonts = lib.mkIf config.ceirios.profiles.graphical {
     enableDefaultPackages = true;
 
     packages = with pkgs; [

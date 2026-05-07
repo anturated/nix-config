@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 
 {
-  ceirios.packages = {
+  ceirios.packages = lib.mkIf config.ceirios.profiles.gaming {
     prismlauncher = pkgs.prismlauncher.override {
       # Add binary required by some mod
       additionalPrograms = [ pkgs.ffmpeg ];

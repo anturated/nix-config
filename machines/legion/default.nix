@@ -11,7 +11,6 @@
       workstation = true;
       graphical = true;
       gaming = true;
-      coding = true;
     };
 
     hardware = {

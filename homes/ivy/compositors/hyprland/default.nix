@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   # https://wiki.hypr.land/Configuring/Configuring-Hyprland/
@@ -13,20 +18,23 @@
     ./windows_and_workspaces.nix
   ];
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-  };
+  config = lib.mkIf config.ceirios.profiles.graphical {
 
-  ceirios.packages = {
-    inherit (pkgs) hyprshot hyprsunset;
-  };
+    wayland.windowManager.hyprland = {
+      enable = true;
+    };
 
-  # xdg-desktop-portal-hyprland config
-  # https://wiki.hypr.land/Hypr-Ecosystem/xdg-desktop-portal-hyprland/
-  xdg.configFile."hypr/xdph.conf".text = ''
-    screencopy {
-      max_fps = 60
-      allow_token_by_default = true
-    }
-  '';
+    ceirios.packages = {
+      inherit (pkgs) hyprshot hyprsunset;
+    };
+
+    # xdg-desktop-portal-hyprland config
+    # https://wiki.hypr.land/Hypr-Ecosystem/xdg-desktop-portal-hyprland/
+    xdg.configFile."hypr/xdph.conf".text = ''
+      screencopy {
+        max_fps = 60
+        allow_token_by_default = true
+      }
+    '';
+  };
 }

@@ -8,6 +8,7 @@
     ./misc.nix
     ./ntsync.nix
     ./revision.nix
+    ./runners.nix
     ./size.nix
     ./xdg-portals.nix
   ];

@@ -9,9 +9,6 @@ let
 in
 {
   config = mkIf config.ceirios.profiles.graphical {
-    # file structure normalifyer
-    programs.nix-ld.enable = true;
-
     services = {
       # enable GVfs, a userspace virtual filesystem.
       gvfs.enable = true;

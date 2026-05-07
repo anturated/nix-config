@@ -1,7 +1,12 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
-  ceirios.packages = {
+  ceirios.packages = lib.mkIf config.ceirios.profiles.graphical {
     inherit (pkgs) awww;
   };
 }

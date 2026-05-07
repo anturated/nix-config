@@ -1,8 +1,8 @@
-{ ... }:
+{ config, ... }:
 
 {
   programs.cava = {
-    enable = true;
+    enable = config.ceirios.profiles.graphical;
     settings = {
       color = {
         theme = "ivy";

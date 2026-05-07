@@ -1,9 +1,14 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   # LSPs to enable system-wide
   # FIXME: there should be a better place for them.
-  ceirios.packages = {
+  ceirios.packages = lib.mkIf config.ceirios.profiles.workstation {
     inherit (pkgs)
       nil # for nix
       hyprls # for hypr (duh)

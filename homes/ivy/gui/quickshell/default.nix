@@ -1,8 +1,13 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   # config goes here someday
-  ceirios.packages = {
+  ceirios.packages = lib.mkIf config.ceirios.profiles.graphical {
     inherit (pkgs) quickshell;
   };
 }
