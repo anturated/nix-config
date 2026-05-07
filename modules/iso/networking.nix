@@ -4,11 +4,17 @@ let
   inherit (lib.modules) mkForce;
 in
 {
-  # allow ssh into the system for headless installs
-  systemd.services.sshd.wantedBy = mkForce [ "multi-user.target" ];
-  services.openssh.enable = true;
+  # allow to ssh on installer
 
+  # start sshd
+  systemd.services.sshd.wantedBy = mkForce [ "multi-user.target" ];
+
+  # add our key to root
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMOJoauZQLAdUyxVmB+oxNQK+LSQ1Y3/L///GjC+oQlG"
   ];
+
+  # enable global DHCP, solves network issues
+  # ik it's deprecated but it's good enough for an iso
+  useDHCP = true;
 }
