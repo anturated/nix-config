@@ -58,6 +58,7 @@ in
         echo "• ──────────────────── genISO ──────────────────── •"
         build_log=$(mktemp)
         build_start=$(date +%s)
+        BUILD_EXIT=0
         gum spin \
           --title "Building iso for $TARGET..." \
           -s minidot \
