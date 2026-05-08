@@ -189,6 +189,7 @@ echo " ──  ──  ──  ──  ──   RSA KEYS   ──  ──  ─�
 cat  /mnt/etc/ssh/ssh_host_rsa_key.pub
 echo " ──  ──  ──  ──  ──  ──  ──  ──  ──  ──  ──  ──  ── "
 echo "  This is as far as the installer goes."
-echo "  Don't forget to remove live media and reboot."
+echo "  MAKE SURE YOU HAVE UEFI BOOT ENABLED, NOT BIOS."
+echo "  You can reboot into hard drive now."
 echo "• ──────────────────────────────────────────────── •"
 
