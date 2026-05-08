@@ -43,7 +43,7 @@ in
 
         format_time() {
           local s=$1
-          printf '%02dh:%02dm:%02ds' \
+          printf '%02dh %02dm %02ds' \
             $((s/3600)) \
             $(((s%3600)/60)) \
             $((s%60))
@@ -55,7 +55,7 @@ in
           exit 1
         fi
 
-        echo "• ──────────────────── genISO ──────────────────── •"
+        echo "• ──────────────────── GenISO ──────────────────── •"
         build_log=$(mktemp)
         build_start=$(date +%s)
         BUILD_EXIT=0
@@ -146,10 +146,10 @@ in
         upload_time=$((upload_end - upload_start))
         total_time=$((total_end - total_start))
 
-        echo "  Took $(format_time "$total_time")"
-
-        echo ""
-        echo "  $URL"
+        echo "• ──────────────────────────────────────────────── •"
+        echo "  Total time: $(format_time "$total_time")"
+        echo "  Parrot should get the permalink."
+        echo "  Geniso done. Goodbye."
         echo "• ──────────────────────────────────────────────── •"
 
         # notifications
