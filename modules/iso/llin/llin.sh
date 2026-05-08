@@ -182,7 +182,7 @@ gum confirm "Want me to run it?" \
     --unselected.background 16 \
     --padding "1 2" \
     --no-show-help \
-&& nixos-install --flake "/mnt/etc/nixos#$hostname" "${installArgs[*]}" \
+&& nixos-install --flake "/mnt/etc/nixos#$hostname" "${installArgs[@]}" \
 || echo "  Ok. Run it manually then."
 echo
 
