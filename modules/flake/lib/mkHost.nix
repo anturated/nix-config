@@ -7,6 +7,7 @@ let
     concatLists
     singleton
     optionals
+    mapAttrs
     ;
 in
 
@@ -59,9 +60,22 @@ evalHost {
       "${self}/modules/${class}/default.nix"
     ]
 
-    # this will likely be done elsewhere
-    # home-manager.nixosModules.home-manager
-    # (self + "/modules/home-manager/default.nix")
+    # i have no idea what this does but i want it
+    (singleton (
+      { config, ... }:
+      let
+        inputs' = mapAttrs (_: mapAttrs (_: v: v.${config.nixpkgs.hostPlatform.system} or v)) inputs;
+      in
+      {
+        key = "dotfiles#specialArgs";
+        _file = "${__curPos.file}";
+
+        _module.args = {
+          inherit inputs';
+          self' = inputs'.self;
+        };
+      }
+    ))
 
     (singleton {
       key = "ceirios#hostname";
