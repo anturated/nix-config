@@ -4,7 +4,7 @@ let
   inherit (config.sops) secrets;
 in
 {
-  environment.systemPackages = [
+  home.packages = [
     (pkgs.writeShellApplication {
       name = "geniso";
 

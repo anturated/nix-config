@@ -7,6 +7,7 @@
     ./gui
     ./ricing
     ./system
+    ./scripts
     ./tui
     ./lsps.nix
   ];

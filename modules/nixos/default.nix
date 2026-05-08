@@ -11,8 +11,8 @@
     ./headless.nix
     ./kernel
     ./networking
-    ./scripts
     ./security
+    ./services
     ./secrets.nix
     ./software
     ./system

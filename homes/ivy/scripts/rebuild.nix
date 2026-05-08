@@ -17,7 +17,7 @@ in
     description = "Path to your local config";
   };
 
-  config.environment.systemPackages = [
+  config.home.packages = [
     (pkgs.writeShellScriptBin "rebuild" ''
       #!/usr/bin/env bash
       set -e

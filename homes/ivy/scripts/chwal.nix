@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = [
+  home.packages = [
     (pkgs.writeShellScriptBin "chwal" ''
       #!/usr/bin/env bash
 

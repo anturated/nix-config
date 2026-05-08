@@ -1,11 +1,17 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
+  inherit (config.ceirios.profiles) gaming;
   hasOffload = config.ceirios.hardware.prime == "offload";
   useOffload = if hasOffload then "1" else "0";
 in
 {
-  environment.systemPackages = [
+  environment.systemPackages = lib.mkIf gaming [
     (pkgs.writeShellScriptBin "kale" ''
       #!/usr/bin/env bash
 
