@@ -82,7 +82,7 @@
           idc = "!git commit -am '$(curl -s https://whatthecommit.com/index.txt)'";
         };
 
-        init.defaultBranch = "main";
+        init.defaultBranch = "master";
         repack.usedeltabaseoffset = "true";
         color.ui = "auto";
         help.autocorrect = 10; # 1 second warning to a typo'd command
