@@ -1,21 +1,14 @@
 {
   pkgs,
-  config,
   host,
-  lib,
+  osConfig,
   ...
 }:
 
 let
-  flakeDir = config.ceirios.system.flakeDir;
+  flakeDir = osConfig.ceirios.system.flakeDir;
 in
 {
-  # HACK: there's probably a better way, gonna stick with this for now
-  options.ceirios.system.flakeDir = lib.mkOption {
-    type = lib.types.str;
-    default = "";
-    description = "Path to your local config";
-  };
 
   config.home.packages = [
     (pkgs.writeShellScriptBin "rebuild" ''
