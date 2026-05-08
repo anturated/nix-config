@@ -157,9 +157,13 @@ run ssh-keygen -t rsa -b 4096 -f /mnt/etc/ssh/ssh_host_rsa_key -N ""
 
 # setup our installer args based off of our configuration
 # this is concept is taken from https://github.com/lilyinstarlight/foosteros/blob/0d40c72ac4e81c517a7aa926b2a1fb4389124ff7/installer/default.nix
+echo "  Checking if we should set password..."
 installArgs=(--no-channel-copy)
 if [ "$(nix eval "/mnt/etc/nixos#nixosConfigurations.$hostname.config.users.mutableUsers")" = "false" ]; then
+  echo "  Nope."
   installArgs+=(--no-root-password)
+else
+  echo "  Yep. nixos-install will give you a prompt"
 fi
 
 echo "  We should be good."
