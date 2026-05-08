@@ -121,7 +121,7 @@ run cp -rT /iso/flake /mnt/etc/nixos
 
 # even if we don't need a new host we are going to have to generate a new hardware config
 echo "  Generating hardware config..."
-run nixos-generate-config --root /mnt --show-hardware-config >/mnt/etc/nixos/machines/"$hostname"/hardware.nix
+nixos-generate-config --root /mnt --show-hardware-config >/mnt/etc/nixos/machines/"$hostname"/hardware.nix
 
 # setup the git repository for the nixos configuration
 BRANCH="master"
