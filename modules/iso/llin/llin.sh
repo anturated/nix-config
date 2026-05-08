@@ -127,7 +127,8 @@ run nixos-generate-config --root /mnt --show-hardware-config >/mnt/etc/nixos/mac
 BRANCH="master"
 
 echo "  Setting up git repo..."
-run git -C /mnt/etc/nixos init
+# force our branch to silence the warning
+run git -C /mnt/etc/nixos init -b $BRANCH
 # use https cuz i'm not adding installer keys to the repo
 run git -C /mnt/etc/nixos remote add origin https://github.com/anturated/nix-config.git
 (
