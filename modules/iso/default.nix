@@ -9,7 +9,6 @@
     # this is useful because it makes things alot easier
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal-new-kernel.nix"
 
-    # keep-sorted start
     ./boot.nix # boot settings
     ./console.nix # tty configurations
     ./fixes.nix # fixes issues
@@ -19,6 +18,5 @@
     ./nixpkgs.nix # nixpkgs configurations like unfree packages
     ./programs.nix # programs that we will need to make our NixOS install
     ./space.nix # ways that we save valuable space on the iso
-    # keep-sorted end
   ];
 }
