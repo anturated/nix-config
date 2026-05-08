@@ -1,5 +1,13 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
+let
+  cfg = config.ceirios;
+in
 {
   programs.fish = {
     enable = true;
@@ -23,16 +31,18 @@
           fish_add_path --append ~/Applications/depot_tools
       end
 
-      # asdf shims
-      if test -z "$ASDF_DATA_DIR"
-          set _asdf_shims "$HOME/.asdf/shims"
-      else
-          set _asdf_shims "$ASDF_DATA_DIR/shims"
-      end
-      if not contains $_asdf_shims $PATH
-          set -gx --prepend PATH $_asdf_shims
-      end
-      set --erase _asdf_shims
+      ${lib.optionalString cfg.profiles.gaming ''
+        # asdf shims
+        if test -z "$ASDF_DATA_DIR"
+            set _asdf_shims "$HOME/.asdf/shims"
+        else
+            set _asdf_shims "$ASDF_DATA_DIR/shims"
+        end
+        if not contains $_asdf_shims $PATH
+            set -gx --prepend PATH $_asdf_shims
+        end
+        set --erase _asdf_shims
+      ''}
 
       # matugen theme
       if test -f ~/.config/fish/theme.fish
@@ -61,7 +71,7 @@
       # tool integrations
       starship init fish | source
       zoxide init fish | source
-      direnv hook fish | source
+      ${lib.optionalString cfg.profiles.workstation "direnv hook fish | source"}
     '';
 
     functions = {
