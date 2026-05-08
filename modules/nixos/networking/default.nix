@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./config.nix
     ./networkManager.nix
     ./openssh.nix
     ./systemd.nix
