@@ -104,6 +104,8 @@ installArgs=(--no-channel-copy)
 if [ "$(nix eval "/mnt/etc/nixos#nixosConfigurations.$hostname.config.users.mutableUsers")" = "false" ]; then
   installArgs+=(--no-root-password)
 fi
+# add impure cuz nobody's logging into git on an iso
+installArgs+=(--impure)
 
 echo "  We should be good."
 echo ""
