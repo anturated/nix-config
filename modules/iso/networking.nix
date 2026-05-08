@@ -14,21 +14,16 @@ in
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMOJoauZQLAdUyxVmB+oxNQK+LSQ1Y3/L///GjC+oQlG"
   ];
 
-  # NOTE: for some reason dhcp is very hard to set up on my vps
-  # we gotta go with networkd + cloud-init
-  # if we want the vps to see the light of day ever
-
-  # ask the host nicely for dhcp stuff
+  # autosetup network devices
+  # we GIVE the installer INTERNET.
+  # is this dirty? yes. but the iso has internet
   services.cloud-init.enable = true;
 
+  # only usable with networkd
   networking = {
-    # use systemd-networkd
-    useNetworkd = true;
+    useNetworkd = mkForce true;
 
-    # doesn't seem to work with cloud-init
-    networkmanager.enable = mkForce false;
-
-    # just to be sure
     useDHCP = mkForce false;
+    networkmanager.enable = mkForce false;
   };
 }
