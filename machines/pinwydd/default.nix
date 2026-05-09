@@ -6,9 +6,7 @@
   ];
 
   ceirios = {
-    profiles = {
-      headless = true;
-    };
+    profiles.headless = true;
 
     hardware.cpu = "amd";
 
@@ -19,8 +17,6 @@
       netmask = "255.255.255.0";
     };
 
-    system.users = {
-      anturated = { };
-    };
+    system.users.anturated = { };
   };
 }
