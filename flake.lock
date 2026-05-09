@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "fywion": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778349836,
+        "narHash": "sha256-rFk63V6PDEX60of+Ah2+ffwJeeLe54+iH46AQEovXLY=",
+        "owner": "anturated",
+        "repo": "fywion",
+        "rev": "7e2721b2a18ef4e8f84fcdaf8c1b30975eab1454",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anturated",
+        "repo": "fywion",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -89,6 +109,7 @@
     },
     "root": {
       "inputs": {
+        "fywion": "fywion",
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
