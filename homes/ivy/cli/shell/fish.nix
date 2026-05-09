@@ -92,9 +92,9 @@ in
           nvim
         '';
       };
-      fish_greeting = lib.mkIf cfg.profiles.graphical {
+      fish_greeting = {
         description = "exec on start";
-        body = "fastfetch";
+        body = lib.optionalString cfg.profiles.graphical "fastfetch";
       };
 
       history = {
