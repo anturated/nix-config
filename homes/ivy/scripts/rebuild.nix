@@ -42,7 +42,7 @@ in
 
       elif [[ "$1" == "-m" ]]; then
         echo " Rebuilding from master..."
-        sudo nixos-rebuild switch --flake "github:anturated/nix-config#${host}"
+        sudo nixos-rebuild switch --flake "github:anturated/nix-config#${host}" --refresh
 
       elif [[ "$1" == "-s" || "$1" == "--stable" ]]; then
         echo " Fetching latest tag..."
@@ -54,12 +54,12 @@ in
         fi
 
         echo " Rebuilding from latest tag: [$TAG]..."
-        sudo nixos-rebuild switch --flake "github:anturated/nix-config/$TAG#${host}"
+        sudo nixos-rebuild switch --flake "github:anturated/nix-config/$TAG#${host}" --refresh
 
       elif [[ $# -eq 1 ]]; then
         TAG="$1"
         echo " Rebuilding from tag: [$TAG]..."
-        sudo nixos-rebuild switch --flake "github:anturated/nix-config/$TAG#${host}"
+        sudo nixos-rebuild switch --flake "github:anturated/nix-config/$TAG#${host}" --refresh
 
       else
         usage
