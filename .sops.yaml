@@ -1,8 +1,27 @@
 keys:
+  # users (for scripts and such)
   - &desant ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMOJoauZQLAdUyxVmB+oxNQK+LSQ1Y3/L///GjC+oQlG
 
+  # machines (for fywion services)
+  - &pinwydd ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkmb1L2+K8pN9f4zgIQCG8AyqSxTr52eHzuQtcNAjqN
+
+# INFO: add at your user to key groups so you can edit secrets
+
 creation_rules:
+  # personal secrets
   - path_regex: secrets/desant\.yaml
     key_groups:
       - age:
           - *desant
+
+  # required for some scripts to work
+  - path_regex: secrets/scripts\.yaml
+    key_groups:
+      - age:
+          - *desant
+
+  # fywion service secrets
+  - path_regex: secrets/fywion/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *anturated

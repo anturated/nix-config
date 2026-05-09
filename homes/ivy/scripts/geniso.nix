@@ -3,11 +3,13 @@
   pkgs,
   config,
   osConfig,
+  self,
   ...
 }:
 
 let
   inherit (config.sops) secrets;
+  inherit (self.lib) mkScriptSecret;
 in
 {
   home.packages = lib.optionals config.ceirios.profiles.workstation [
@@ -182,8 +184,8 @@ in
   ];
 
   sops.secrets = {
-    cdn-pass = { };
-    tg-chat = { };
-    tg-token = { };
+    cdn-pass = mkScriptSecret { };
+    tg-chat = mkScriptSecret { };
+    tg-token = mkScriptSecret { };
   };
 }
