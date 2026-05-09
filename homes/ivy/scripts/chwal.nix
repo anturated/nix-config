@@ -1,7 +1,12 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
-  home.packages = [
+  home.packages = lib.optionals config.ceirios.profiles.graphical [
     (pkgs.writeShellScriptBin "chwal" ''
       #!/usr/bin/env bash
 

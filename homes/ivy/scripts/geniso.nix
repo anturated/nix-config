@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   config,
   osConfig,
@@ -9,7 +10,7 @@ let
   inherit (config.sops) secrets;
 in
 {
-  home.packages = [
+  home.packages = lib.optionals config.ceirios.profiles.workstation [
     (pkgs.writeShellApplication {
       name = "geniso";
 
