@@ -56,12 +56,11 @@ in
 
       Banner = toString (
         pkgs.writeText "ssh_banner" ''
-          • ──────────────────   Ceirios ────────────────── •
-             : ${config.system.nixos.release}
+          • ────   Ceirios ──── •
              : ${config.system.name}
              : ${config.system.configurationRevision}
-          • ──────────────────────────────────────────────── •
-                       Time to plant some plants.
+             : ${config.system.nixos.release}
+          • ──────────────────── •
         ''
       );
     };
