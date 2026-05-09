@@ -5,8 +5,8 @@
     enable = true;
     settings = {
       add_newline = true;
+      format = ("$username" + "$directory" + "$git_branch" + "$git_status" + "$character");
 
-      format = ("$directory" + "$git_branch" + "$git_status" + "$character");
       right_format = (
         "$rust"
         + "$golang"
@@ -18,6 +18,12 @@
         + "$package"
         + "$nix_shell"
       );
+
+      username = {
+        format = "[$user]($style)[](green)";
+        style_user = "fg:bold black bg:green"; # this won't apply to root so don't worry
+        show_always = false; # only show on ssh
+      };
 
       directory = {
         format = "[ $path]($style)";
