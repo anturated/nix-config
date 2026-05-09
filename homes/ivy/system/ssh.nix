@@ -9,7 +9,7 @@
 
     matchBlocks = {
       "pinwydd" = {
-        user = "desant";
+        user = "anturated";
         hostname = "82.38.2.58";
       };
 

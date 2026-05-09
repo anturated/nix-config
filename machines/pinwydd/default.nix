@@ -18,5 +18,9 @@
       gateway = "62.141.62.1";
       netmask = "255.255.255.0";
     };
+
+    system.users = {
+      anturated = { };
+    };
   };
 }
