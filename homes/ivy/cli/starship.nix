@@ -20,8 +20,8 @@
       );
 
       username = {
-        format = "[$user]($style)[](green)";
-        style_user = "fg:bold black bg:green"; # this won't apply to root so don't worry
+        format = "[$user]($style)[](blue)";
+        style_user = "fg:bold black bg:blue"; # this won't apply to root so don't worry
         show_always = false; # only show on ssh
       };
 
