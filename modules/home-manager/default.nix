@@ -6,6 +6,7 @@
   imports = [
     ../generic
     ./environment
+    ./extras.nix
     ./revision.nix
     ./profiles.nix
     ./software

@@ -62,5 +62,13 @@
       repo = "sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # quickly deploy my stuff
+    fywion = {
+      type = "github";
+      owner = "anturated";
+      repo = "fywion";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
