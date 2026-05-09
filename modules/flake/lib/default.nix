@@ -6,6 +6,7 @@
 lib.fixedPoints.makeExtensible (final: {
   helpers = import ./helpers.nix { inherit lib; };
   mkHost = import ./mkHost.nix { inherit inputs lib; };
+  secrets = import ./secrets.nix { inherit inputs; };
   validators = import ./validators.nix { inherit lib; };
 
   inherit (final.helpers)
@@ -18,6 +19,10 @@ lib.fixedPoints.makeExtensible (final: {
     containsStrings
     indexOf
     intListToStringList
+    ;
+  inherit (final.secrets)
+    mkSecret
+    mkScriptSecret
     ;
   inherit (final.validators)
     ifTheyExist
