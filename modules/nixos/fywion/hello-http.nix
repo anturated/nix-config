@@ -10,9 +10,9 @@ let
   inherit (self.lib) mkFywionOption;
 in
 {
-  options.ceirios.fywion.hello-http = mkFywionOption "blahaj" { };
+  options.ceirios.fywion.hello-http = mkFywionOption "testing" { };
 
-  config = mkIf config.ceirios.fywion.blahaj.enable {
+  config = mkIf config.ceirios.fywion.hello-http.enable {
     fywion.hello-http.enable = true;
   };
 }

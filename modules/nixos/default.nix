@@ -7,6 +7,7 @@
     ../base
     ./boot
     ./environment
+    ./fywion
     ./hardware
     ./headless.nix
     ./kernel
