@@ -153,7 +153,7 @@ in
           192.168.0.0/16 OK
         '';
 
-        settings.main.smtp_hello_name = config.mailserver.fqdn;
+        settings.main.smtp_helo_name = config.mailserver.fqdn;
       };
     };
 
