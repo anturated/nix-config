@@ -46,9 +46,6 @@ evalHost {
 
     # used by many rice options i'm not remaking all that
     host = name;
-
-    # pass a stable branch of nixpkgs
-    pkgsStable = inputs.nixpkgs-stable.legacyPackages.${system};
   } specialArgs;
 
   modules = concatLists [
