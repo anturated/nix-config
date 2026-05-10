@@ -15,8 +15,6 @@
 
         # media viewing
         cosmic-files
-        eog
-        vlc
         okteta
 
         # tools
