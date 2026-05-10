@@ -70,5 +70,19 @@
       repo = "fywion";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # mail server
+    simple-nixos-mailserver = {
+      type = "gitlab";
+      owner = "simple-nixos-mailserver";
+      repo = "nixos-mailserver";
+
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        git-hooks.follows = "";
+        flake-compat.follows = "";
+        blobs.follows = "";
+      };
+    };
   };
 }
