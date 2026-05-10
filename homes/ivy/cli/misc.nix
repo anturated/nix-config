@@ -1,30 +1,55 @@
-{ pkgs, ... }:
-
 {
-  ceirios.packages = {
-    inherit (pkgs)
-      wget
-      curl
-      brightnessctl
-      playerctl
-      zip
-      unzip
-      wl-clipboard
-      xclip
-      jq
-      fzf
-      ripgrep
-      asdf-vm
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
-      # convenience
-      imagemagick
-      eza
-      bat
-      zoxide
-      killall
+let
+  inherit (lib) mergeAttrsList optionalAttrs;
+  inherit (config.ceirios) profiles;
+in
+{
+  ceirios.packages = mergeAttrsList [
+    # just keep
+    {
+      inherit (pkgs)
+        # i don't know every command yet
+        zip
+        unzip
+        killall
 
-      # no idea
-      usbutils
-      ;
-  };
+        # convenience
+        fzf
+        zoxide
+        jq
+
+        # better alternatives
+        ripgrep
+        eza
+        bat
+        ;
+    }
+
+    (optionalAttrs profiles.gaming {
+      inherit (pkgs)
+        asdf-vm
+        ;
+    })
+
+    # graphical
+    (optionalAttrs profiles.graphical {
+      inherit (pkgs)
+        # control
+        brightnessctl
+        playerctl
+
+        # clipboard
+        wl-clipboard-rs
+        xclip # NOTE: probably useful for wine/proton, not sure
+
+        imagemagick # FIXME: since this is for wallpapers maybe move it to the script
+        ;
+    })
+  ];
 }
