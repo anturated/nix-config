@@ -32,7 +32,7 @@
 
     system = {
       stateVersion = "25.05";
-      flakeDir = "$HOME/documents/projects/nix-config";
+      flakeDir = "$HOME/dev/nix-config";
     };
   };
 }
