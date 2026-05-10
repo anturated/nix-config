@@ -3,6 +3,7 @@ keys:
   - &desant ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMOJoauZQLAdUyxVmB+oxNQK+LSQ1Y3/L///GjC+oQlG
 
   # machines (for fywion services)
+  - &legion ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExmw+GajJLhh9tjCp7tRdNEOAnjpl0MyiAY7R/XMtT5
   - &pinwydd ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkmb1L2+K8pN9f4zgIQCG8AyqSxTr52eHzuQtcNAjqN
 
 # INFO: add at your user to key groups so you can edit secrets
@@ -24,4 +25,6 @@ creation_rules:
   - path_regex: secrets/fywion/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
-          - *anturated
+          - *desant
+          - *legion
+          - *pinwydd
