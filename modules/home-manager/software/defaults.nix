@@ -3,15 +3,16 @@
   osClass,
   ...
 }:
+
 let
   inherit (lib.attrsets) mapAttrs;
   inherit (lib.options) mkOption;
-  inherit (lib.types) enum nullOr str;
+  inherit (lib.types) enum str;
 
   mkDefault = name: args: mkOption ({ description = "default ${name} for the system"; } // args);
 in
 {
-  options.ceirios.programs.defaults = mapAttrs mkDefault {
+  options.ceirios.software.defaults = mapAttrs mkDefault {
     shell = {
       type = enum [
         "bash"
@@ -24,8 +25,9 @@ in
 
     terminal = {
       type = enum [
-        "ghostty"
         "kitty"
+        "ghostty"
+        "wezterm"
       ];
       default = "kitty";
     };

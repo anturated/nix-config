@@ -3,6 +3,7 @@
 
 {
   imports = [
+    ./defaults.nix
     ./gpg-agent.nix
   ];
 }

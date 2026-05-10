@@ -18,7 +18,7 @@ in
   users.users = genAttrs (builtins.attrNames config.ceirios.system.users) (
     name:
     let
-      inherit (config.home-manager.users.${name}.ceirios.programs.defaults) shell;
+      inherit (config.home-manager.users.${name}.ceirios.software.defaults) shell;
     in
     mergeAttrsList [
       {
