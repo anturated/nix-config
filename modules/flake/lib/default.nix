@@ -8,6 +8,7 @@ lib.fixedPoints.makeExtensible (final: {
   helpers = import ./helpers.nix { inherit lib; };
   mkHost = import ./mkHost.nix { inherit inputs lib; };
   secrets = import ./secrets.nix { inherit inputs; };
+  template = import ./template; # templates, selections of code that are repeated
   validators = import ./validators.nix { inherit lib; };
 
   inherit (final.fywion) mkGraphicalService mkFywionOption;
