@@ -10,7 +10,7 @@
     (pkgs.writeShellScriptBin "chwal" ''
       #!/usr/bin/env bash
 
-      WALLPAPER_DIR="$HOME/Pictures/Wallpapers/"
+      WALLPAPER_DIR="$HOME/media/pictures/wallpapers/"
       SCHEME="scheme-tonal-spot"
 
       thumb_dir="$HOME/.cache/wallthumbs"
