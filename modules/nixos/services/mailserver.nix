@@ -1,3 +1,5 @@
+# NOTE: once you get a normal VPS with rDNS and stuff
+# look through this carefully because some stuff is just ass
 {
   lib,
   self,
@@ -5,6 +7,7 @@
   config,
   ...
 }:
+
 let
   inherit (lib.modules) mkIf;
   inherit (self.lib) mkFywionOption mkSecret;
@@ -157,7 +160,7 @@ in
       };
     };
 
-    # FIXME: doesn't have to be here
+    # doesn't have to be here
     networking.firewall.allowedTCPPorts = [
       80
       443
@@ -168,7 +171,7 @@ in
     security.acme = {
       acceptTerms = true;
       certs.${cfg.domain} = {
-        listenHTTP = ":80"; # FIXME: if you wanna add another service you gotta do nginx
+        listenHTTP = ":80"; # if you wanna add another service you gotta do nginx
         reloadServices = [
           "postfix.service"
           "dovecot.service"

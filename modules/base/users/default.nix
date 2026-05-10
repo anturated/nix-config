@@ -1,4 +1,4 @@
-# NOTE: some stuff can be shared between darwin/iso/nixos/... and it should be here.
+# some stuff can be shared between darwin/iso/nixos/... and it should be here.
 # like ssh keys and such.
 # nixos-specific stuff like passwords is in modules/nixos/users/
 

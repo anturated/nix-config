@@ -46,7 +46,7 @@ in
 
         # clipboard
         wl-clipboard-rs
-        xclip # NOTE: probably useful for wine/proton, not sure
+        xclip # NOTE: remove when proton wayland is a thing
 
         imagemagick # FIXME: since this is for wallpapers maybe move it to the script
         ;
