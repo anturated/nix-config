@@ -8,6 +8,7 @@
 
 let
   inherit (lib.modules) mkIf mkForce;
+  inherit (lib.lists) concatLists;
   inherit (pkgs.stdenv.hostPlatform) isLinux;
 
   template = self.lib.template.xdg;
@@ -50,17 +51,20 @@ let
       ];
     };
 
+    # import all types from here:
+    # find /run/current-system/sw/share/mime -name '*.xml' | xargs grep -h 'type=' | grep -oP 'type="\K[^"]+' | grep -E '^(image|video|audio)/' | sort -u
+
     media = {
       app = "mpv";
-      mimeTypes = [
-        "video/*"
-        "audio/*"
+      mimeTypes = concatLists [
+        (import ./mime/video.nix)
+        (import ./mime/audio.nix)
       ];
     };
 
     images = {
       app = "mpv";
-      mimeTypes = [ "image/*" ];
+      mimeTypes = (import ./mime/image.nix);
     };
 
     fileManager = {
