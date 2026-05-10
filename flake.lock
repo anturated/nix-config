@@ -115,8 +115,32 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
+        "simple-nixos-mailserver": "simple-nixos-mailserver",
         "sops": "sops",
         "spicetify": "spicetify"
+      }
+    },
+    "simple-nixos-mailserver": {
+      "inputs": {
+        "blobs": [],
+        "flake-compat": [],
+        "git-hooks": [],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777287493,
+        "narHash": "sha256-Fj7S91TuZm6+DG/v6SFme/p+sWrYMQICGX6yQ5KD43Q=",
+        "owner": "simple-nixos-mailserver",
+        "repo": "nixos-mailserver",
+        "rev": "e33fbde199eaad513ef5d0746db19d5878150232",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "simple-nixos-mailserver",
+        "repo": "nixos-mailserver",
+        "type": "gitlab"
       }
     },
     "sops": {
