@@ -13,8 +13,12 @@
       outputs = [ "out" ];
     };
 
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    age = {
+      sshKeyFile = "/etc/ssh/ssh_host_ed25519_key";
 
+      # don't load extra keys
+      sshKeyPaths = [ ];
+    };
     # don't load extra keys
     gnupg.sshKeyPaths = [ ];
   };

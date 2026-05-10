@@ -15,7 +15,7 @@
     sops = {
       package = lib.mkIf (osConfig ? sops) osConfig.sops.package;
       defaultSopsFile = "${self}/secrets/${name}.yaml";
-      age.sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
+      age.sshKeyFile = "${config.home.homeDirectory}/.ssh/id_ed25519";
       gnupg.sshKeyPaths = [ ];
     };
   };
