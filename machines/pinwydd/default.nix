@@ -18,11 +18,5 @@
     };
 
     system.users.anturated = { };
-
-    fywion = {
-      mailserver.enable = true;
-    };
   };
-
-  networking.domain = "anturated.dev";
 }

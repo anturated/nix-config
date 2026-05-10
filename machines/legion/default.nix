@@ -34,9 +34,5 @@
       stateVersion = "25.05";
       flakeDir = "$HOME/Documents/projects/nix-config";
     };
-
-    fywion = {
-      hello-http.enable = true;
-    };
   };
 }
