@@ -12,13 +12,8 @@ in
 {
   config = mkIf config.ceirios.profiles.graphical {
     ceirios.packages = mkMerge [
-      {
-        inherit (pkgs) yt-dlp ff2mpv-rust;
-      }
-
       (mkIf pkgs.stdenv.hostPlatform.isLinux {
         inherit (pkgs)
-          syncplay
           ffmpeg
           ;
       })
@@ -29,8 +24,6 @@ in
 
       scripts =
         (with pkgs.mpvScripts; [
-          sponsorblock
-
           # modern ui
           modernz
           thumbfast
