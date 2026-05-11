@@ -18,10 +18,8 @@
         okteta
 
         # tools
-        coppwr
         transmission_4-gtk
         losslesscut-bin
-        anydesk
         ;
     };
   };
