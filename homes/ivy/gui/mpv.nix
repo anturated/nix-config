@@ -53,6 +53,11 @@ in
         "b" = "add audio-delay +0.042";
         "n" = "add audio-delay -0.042";
         "a" = "cycle-values video-aspect \"16:9\" \"4:3\" \"2.35:1\" \"-1\"";
+        "<" = "playlist_prev";
+        ">" = "playlist_next";
+
+        # video speed controller my beloved
+        "g-g" = "set speed 1.5";
 
         # mpv as a image viewer
         MBTN_RIGHT = "script-binding drag-to-pan";
@@ -153,9 +158,11 @@ in
           fullscreen_button = "no";
 
           hover_effect = "color";
-          hover_effect_color = "#74c7ec";
-          seekbarfg_color = "#74c7ec";
-          seekbarbg_color = "#181825";
+          hover_effect_color = "#a4d396"; # button hover
+          seek_handle_color = "#e1e4da";
+          seek_handle_border_color = "#e1e4da";
+          seekbarfg_color = "#e1e4da";
+          seekbarbg_color = "#11140f";
         };
       };
     };
