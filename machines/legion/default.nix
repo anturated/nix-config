@@ -32,7 +32,7 @@
 
     system = {
       stateVersion = "25.05";
-      flakeDir = "$HOME/dev/nix-config";
+      flakeDir = "$HOME/dev/dotfiles";
     };
   };
 }
