@@ -38,13 +38,13 @@ in
     bold = mkOption {
       type = str;
       description = "The name of the bold font";
-      default = "Maple Mono Medium";
+      default = "Maple Mono Bold";
     };
 
     bold-italic = mkOption {
       type = str;
       description = "The name of the bold italic font";
-      default = "Maple Mono Medium Italic";
+      default = "Maple Mono Bold Italic";
     };
 
     package = mkOption {
