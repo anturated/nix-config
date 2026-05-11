@@ -29,14 +29,14 @@
     };
 
     font = {
-      name = "Maple Mono CN";
-      size = 11.0;
+      name = config.ceirios.style.fonts.name;
+      size = config.ceirios.style.fonts.size;
     };
 
     extraConfig = ''
-      bold_font        auto
-      italic_font      auto
-      bold_italic_font auto
+      bold_font        ${config.ceirios.style.fonts.bold}
+      italic_font      ${config.ceirios.style.fonts.italic}
+      bold_italic_font ${config.ceirios.style.fonts.bold-italic}
       text_thickness 1.3
       symbol_map U+E000-U+F8FF,U+100000-U+10FFFF Symbols Nerd Font
     '';

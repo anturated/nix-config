@@ -5,6 +5,7 @@
 
   imports = [
     ../generic
+    ./fonts.nix
     ./environment
     ./extras.nix
     ./revision.nix
