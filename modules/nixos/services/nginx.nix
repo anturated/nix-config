@@ -65,6 +65,13 @@ in
           enableACME = false;
         };
       };
+
+      # it won't pick up the right certs idk
+      security.acme.certs.${cfg.domain} = {
+        reloadServices = [
+          "nginx.service"
+        ];
+      };
     })
   ];
 }
