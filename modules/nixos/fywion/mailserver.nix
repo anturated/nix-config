@@ -158,6 +158,13 @@ in
 
         settings.main.smtp_helo_name = config.mailserver.fqdn;
       };
+
+      nginx.virtualHosts = {
+        "${cfg.domain}" = {
+          forceSSL = true;
+          enableACME = true;
+        };
+      };
     };
 
     security.acme.certs.${cfg.domain} = {
