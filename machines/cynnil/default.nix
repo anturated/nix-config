@@ -21,9 +21,9 @@
 
     system.users.anturated = { };
 
-    # fywion = {
-    #   nginx.enable = true;
-    #   anturated-website.enable = true;
-    # };
+    fywion = {
+      nginx.enable = true;
+      anturated-website.enable = true;
+    };
   };
 }
