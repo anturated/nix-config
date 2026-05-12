@@ -13,6 +13,11 @@
         hostname = "82.38.2.58";
       };
 
+      "cynnil" = {
+        user = "anturated";
+        hostname = "178.105.140.238";
+      };
+
       "fawrion" = {
         user = "desant";
         hostname = "185.233.46.184";
