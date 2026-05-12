@@ -130,7 +130,7 @@ echo "  Setting up git repo..."
 # force our branch to silence the warning
 run git -C /mnt/etc/nixos init -b $BRANCH
 # use https cuz i'm not adding installer keys to the repo
-run git -C /mnt/etc/nixos remote add origin https://github.com/anturated/nix-config.git
+run git -C /mnt/etc/nixos remote add origin https://github.com/anturated/dotfiles.git
 (
   # grab the entire flake
   run git -C /mnt/etc/nixos fetch &&
