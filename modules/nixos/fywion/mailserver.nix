@@ -160,23 +160,11 @@ in
       };
     };
 
-    # doesn't have to be here
-    networking.firewall.allowedTCPPorts = [
-      80
-      443
-      465
-      587
-    ];
-
-    security.acme = {
-      acceptTerms = true;
-      certs.${cfg.domain} = {
-        listenHTTP = ":80"; # if you wanna add another service you gotta do nginx
-        reloadServices = [
-          "postfix.service"
-          "dovecot.service"
-        ];
-      };
+    security.acme.certs.${cfg.domain} = {
+      reloadServices = [
+        "postfix.service"
+        "dovecot.service"
+      ];
     };
   };
 }
