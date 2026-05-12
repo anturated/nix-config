@@ -8,7 +8,7 @@
   ceirios = {
     profiles.headless = true;
 
-    hardware.cpu = "amd";
+    hardware.cpu = "intel";
 
     networking = {
       interface = "eth0";
