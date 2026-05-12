@@ -32,10 +32,6 @@
       # emoji #
       twemoji-color-font
       noto-fonts-color-emoji
-
-      # monospace #
-      monaspace
-      iosevka
     ];
   };
 }

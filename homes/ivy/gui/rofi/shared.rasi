@@ -1,7 +1,7 @@
 @import "colors.rasi"
 
 configuration {
-  font: "Iosevka 12";
+  font: "Maple Mono Medium 11";
   border: 2px;
   border-radius: 13px;
   padding: 10px;
