@@ -6,5 +6,6 @@
   imports = [
     ./hello-http.nix
     ./nginx.nix
+    ./website.nix
   ];
 }
