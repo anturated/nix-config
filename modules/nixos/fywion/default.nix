@@ -7,6 +7,7 @@
     ./hello-http.nix
     ./mailserver.nix
     ./nginx.nix
+    ./obsidian-livesync.nix
     ./website.nix
   ];
 }
