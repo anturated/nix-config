@@ -6,6 +6,7 @@ keys:
   # machines (for fywion services)
   - &legion ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIExmw+GajJLhh9tjCp7tRdNEOAnjpl0MyiAY7R/XMtT5
   - &pinwydd ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkmb1L2+K8pN9f4zgIQCG8AyqSxTr52eHzuQtcNAjqN
+  - &cynnil ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINNsMAoi3+7N7B9uqG8sU/mGvnLBHXMhC1jzpgBO0n02
 
 # INFO: add at your user to key groups so you can edit secrets
 
@@ -30,3 +31,4 @@ creation_rules:
           - *anturated
           - *legion
           - *pinwydd
+          - *cynnil
