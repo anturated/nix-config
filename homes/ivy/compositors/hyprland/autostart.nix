@@ -5,5 +5,6 @@
     exec-once = qs -c ivy -d
     exec-once = awww-daemon
     exec-once = hyprsunset
+    exec-once = soteria
   '';
 }
