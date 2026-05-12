@@ -5,6 +5,7 @@
 {
   imports = [
     ./hello-http.nix
+    ./mailserver.nix
     ./nginx.nix
     ./website.nix
   ];
