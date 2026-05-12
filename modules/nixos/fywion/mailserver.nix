@@ -1,5 +1,3 @@
-# NOTE: once you get a normal VPS with rDNS and stuff
-# look through this carefully because some stuff is just ass
 {
   lib,
   self,
