@@ -54,6 +54,11 @@ in
             include = "latency-performance";
           };
 
+          cpu = {
+            # idk why this isn't performance by default
+            governor = "performance|schedutil";
+          };
+
           # might be better for stutters
           vm = {
             dirty_bytes = "40%";
