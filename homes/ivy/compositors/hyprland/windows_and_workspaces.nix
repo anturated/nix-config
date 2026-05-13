@@ -21,7 +21,7 @@ in
       match:class = ^(steam_app_.*)$|^(cs2)$|^(Celeste.bin.x86_64)$|^(Celeste)$|^(Streaming Client)$|^(Minecraft.*)$|^(valheim.x86_64)$|^(DREAD.*)$
 
       immediate = on
-      fullscreen = on
+      fullscreen = 2
       workspace = 2 silent
     }
 
@@ -30,7 +30,7 @@ in
       match:content = 3 # contentType = game
 
       immediate = on
-      fullscreen = on
+      fullscreen = 2
       workspace = 2 silent
     }
 
@@ -38,7 +38,7 @@ in
       name = gamescope
       match:class = gamescope
 
-      fullscreen = on
+      fullscreen = 2
       workspace = 2 silent
     }
 
