@@ -22,13 +22,6 @@
       ref = "nixos-25.11";
     };
 
-    # better hardware support for laptops and such
-    nixos-hardware = {
-      type = "github";
-      owner = "NixOS";
-      repo = "nixos-hardware";
-    };
-
     # userspace configs
     home-manager = {
       type = "github";
