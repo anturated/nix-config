@@ -37,15 +37,18 @@ in
         }
       ];
 
-      hardware.nvidia.prime = {
-        amdgpuBusId = mkIf (cpu == "amd") "PCI:${busIds.primary}";
-        intelBusId = mkIf (cpu == "intel") "PCI:${busIds.primary}";
-        nvidiaBusId = "PCI:${busIds.discrete}";
+      hardware.nvidia = {
+        powerManagement.finegrained = prime == "offload";
+        prime = {
+          amdgpuBusId = mkIf (cpu == "amd") "PCI:${busIds.primary}";
+          intelBusId = mkIf (cpu == "intel") "PCI:${busIds.primary}";
+          nvidiaBusId = "PCI:${busIds.discrete}";
 
-        sync.enable = prime == "sync";
-        reverseSync.enable = prime == "reverse-sync";
-        offload.enable = prime == "offload";
-        offload.enableOffloadCmd = prime == "offload";
+          sync.enable = prime == "sync";
+          reverseSync.enable = prime == "reverse-sync";
+          offload.enable = prime == "offload";
+          offload.enableOffloadCmd = prime == "offload";
+        };
       };
     })
   ];
