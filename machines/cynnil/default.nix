@@ -25,7 +25,6 @@
       nginx.enable = true;
       anturated-website.enable = true;
       mailserver.enable = true;
-      obsidian-livesync.enable = true;
     };
   };
 }
