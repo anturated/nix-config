@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778782658,
-        "narHash": "sha256-KQiimhzCO2cqJZIWZRnd6RsfhjUC68vt+LuqVhn0AjA=",
+        "lastModified": 1778798246,
+        "narHash": "sha256-iPxLO69Pu+4jNGxwWHIm1tzc+ZZuP7qnM4H+TDnhg18=",
         "owner": "anturated",
         "repo": "fywion",
-        "rev": "f519daee9489eea7eb25d26178f8769c05c3ef9d",
+        "rev": "31f4b8c21767bfd319a1190d7279eab4ddd9bd2b",
         "type": "github"
       },
       "original": {
