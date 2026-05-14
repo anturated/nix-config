@@ -22,6 +22,8 @@
 
     wayland.windowManager.hyprland = {
       enable = true;
+      # TODO: check out what lua is
+      configType = "hyprlang";
     };
 
     ceirios.packages = {
