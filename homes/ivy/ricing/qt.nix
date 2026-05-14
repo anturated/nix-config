@@ -15,7 +15,7 @@
     ceirios.packages = {
       inherit (pkgs)
         # these are straight up themes
-        darkly-qt5
+        # darkly-qt5
         darkly
         ;
     };
