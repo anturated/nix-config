@@ -6,6 +6,7 @@ import dbus.mainloop.glib
 from gi.repository import GLib
 import subprocess
 
+# from pathlib import Path
 
 # describes what the client wants active while it's registered
 class KaleClient():
@@ -143,6 +144,22 @@ class KaleDaemon(dbus.service.Object):
             self.run_command("tuned-adm profile ceirios-balanced")
             self.using_power = False
 
+        # try tlpd
+        # governor   = "performance" if need_power else "schedutil"
+        # boost      = "1"           if need_power else "0"
+        # profile    = "performance" if need_power else "balanced"
+        #
+        # # scaling
+        # for path in Path("/sys/devices/system/cpu").glob("cpu*/cpufreq/scaling_governor"):
+        #     path.write_text(governor)
+        #
+        # # boost
+        # Path("/sys/devices/system/cpu/cpufreq/boost").write_text(boost)
+        #
+        # # profile
+        # Path("/sys/firmware/acpi/platform_profile").write_text(profile)
+        #
+        # self.using_power = need_power
 
     ### API ###
 

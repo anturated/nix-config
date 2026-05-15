@@ -1,12 +1,17 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   isLaptop = config.ceirios.profiles.laptop;
 in
 {
-  services = {
+  services = lib.mkIf isLaptop {
     tuned = {
-      enable = isLaptop;
+      enable = true;
 
       # override profiles in case i don't like something
       profiles = {
