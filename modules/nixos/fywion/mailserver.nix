@@ -33,6 +33,14 @@ in
         key = "spam";
         file = "mailserver";
       };
+      mailserver-deploy = mkSecret {
+        key = "deploy";
+        file = "mailserver";
+      };
+      mailserver-jobs = mkSecret {
+        key = "jobs";
+        file = "mailserver";
+      };
     };
 
     mailserver = {
@@ -103,6 +111,23 @@ in
             "bot@${rdomain}"
           ];
           hashedPasswordFile = config.sops.secrets.mailserver-spam.path;
+        };
+
+        "deploy@${rdomain}" = {
+          aliases = [
+            "hosting"
+            "vps"
+          ];
+          hashedPasswordFile = config.sops.secrets.mailserver-deploy.path;
+        };
+
+        "jobs@${rdomain}" = {
+          aliases = [
+            "hire"
+            "hireme"
+            "contact"
+          ];
+          hashedPasswordFile = config.sops.secrets.mailserver-jobs.path;
         };
       };
 
