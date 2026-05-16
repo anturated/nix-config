@@ -172,6 +172,7 @@ in
             # USER = "git@${rdomain}";
             SMTP_ADDR = "smtp.gmail.com"; # FIXME: update to own
             USER = "anturated@gmail.com";
+            SMTP_PORT = 465;
           };
         };
 
