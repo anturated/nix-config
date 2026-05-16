@@ -12,15 +12,8 @@ in
   programs.fish = {
     enable = true;
 
-    plugins = [
-      {
-        name = "done"; # notify when long commands finish
-        src = pkgs.fishPlugins.done;
-      }
-    ];
-
     shellInit = ''
-      # source .fish_profile if present (put login-shell env vars there)
+      # source .fish_profile if present
       if test -f ~/.fish_profile
           source ~/.fish_profile
       end
@@ -55,10 +48,6 @@ in
       set -x MANROFFOPT "-c"
       set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
-      # done plugin tuning
-      set -U __done_min_cmd_duration 10000
-      set -U __done_notification_urgency_level low
-
       # bang-bang shortcuts: !! repeats last command, !$ repeats last argument
       if [ "$fish_key_bindings" = fish_vi_key_bindings ]
           bind -Minsert ! __history_previous_command
@@ -92,33 +81,10 @@ in
           nvim
         '';
       };
+
       fish_greeting = {
         description = "exec on start";
         body = lib.optionalString cfg.profiles.graphical "fastfetch";
-      };
-
-      history = {
-        description = "Command history with timestamps";
-        body = "builtin history --show-time='%F %T '";
-      };
-
-      backup = {
-        description = "Create <file>.bak";
-        argumentNames = [ "filename" ];
-        body = "cp $filename $filename.bak";
-      };
-
-      copy = {
-        description = "Auto cp -r if it ends with a '/'";
-        body = ''
-          set count (count $argv | tr -d \n)
-          if test "$count" = 2; and test -d "$argv[1]"
-              set from (string trim --right --chars=/ $argv[1])
-              command cp -r $from $argv[2]
-          else
-              command cp $argv
-          end
-        '';
       };
 
       # !! — repeat last command
@@ -166,19 +132,8 @@ in
       # System
       jctl = "journalctl -p 3 -xb";
 
-      # Archives
-      tarnow = "tar -acf";
-      untar = "tar -zxvf";
-
       # Networking
-      wget = "wget -c";
       refreshwifi = "nmcli device wifi rescan";
-      tb = "nc termbin.com 9999";
-
-      # Hardware / processes
-      hw = "hwinfo --short";
-      psmem = "ps auxf | sort -nr -k 4";
-      psmem10 = "ps auxf | sort -nr -k 4 | head -10";
 
       # grep / color wrappers
       grep = "grep --color=auto";
