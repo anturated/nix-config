@@ -11,7 +11,6 @@
       # these are just nice to have
       yazi
       btop
-      lazygit
       gdu
       ;
   }
