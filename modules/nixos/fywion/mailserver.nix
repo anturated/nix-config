@@ -41,6 +41,10 @@ in
         key = "jobs";
         file = "mailserver";
       };
+      mailserver-caterpillar = mkSecret {
+        key = "bot";
+        file = "mailserver";
+      };
     };
 
     mailserver = {
@@ -128,6 +132,14 @@ in
             "contact@${rdomain}"
           ];
           hashedPasswordFile = config.sops.secrets.mailserver-jobs.path;
+        };
+
+        "caterpillar@${rdomain}" = {
+          aliases = [
+            "bot"
+            "pill"
+          ];
+          hashedPasswordFile = config.sops.secrets.mailserver-caterpillar.path;
         };
       };
 
