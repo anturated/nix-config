@@ -115,17 +115,17 @@ in
 
         "deploy@${rdomain}" = {
           aliases = [
-            "hosting"
-            "vps"
+            "hosting@${rdomain}"
+            "vps@${rdomain}"
           ];
           hashedPasswordFile = config.sops.secrets.mailserver-deploy.path;
         };
 
         "jobs@${rdomain}" = {
           aliases = [
-            "hire"
-            "hireme"
-            "contact"
+            "hire@${rdomain}"
+            "hireme@${rdomain}"
+            "contact@${rdomain}"
           ];
           hashedPasswordFile = config.sops.secrets.mailserver-jobs.path;
         };
