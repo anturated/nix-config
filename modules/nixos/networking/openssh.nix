@@ -94,6 +94,17 @@ in
           key = "AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
         }
       ];
+
+      "git.anturated.dev" = [
+        {
+          type = "rsa";
+          key = "AAAAB3NzaC1yc2EAAAADAQABAAACAQDgasL74TZGpTTbUyoSwBb1MYm8+vR78vcFJV+yX8ZVDdZGJcF4v13e0k6rLfR19iH/AVLr+hVIlzVkYJ4CcNszaGjUu9TaVzeYHXhQKYDITktJM56Sm7bN0Ra4Y44BDQgilBYUphG6FuvJSuKMbTBYdpiIjupd9b/5hfDhHqUHac07OWVBZrS9q/kyNrQSMn7syXOpuLl/CvIvYdZPjiHzUODabInLmRdfIolhsFkfrTfFC+DLjRDID7WdTMpFtmY4dmqDI1V7osS0jM/6wtZb4tkMNBUeQLclEUudWt1swC4gRV2eyq2byw/QzAmC6nR8diGDBrw0rGQO2JnRTCvVPRMHbCFKYC59+nKB8TFqPcw/5/Ux2VI5S1cURWKkExRPwHwQrf9oQlihsKGeB47crf3FpPJwLgrKjCCF6TDEBxcb7DucycviTmVIzYy+P02HLIEI4TKZY7GMG3SWEYikZLwPXGPiVQgnrD0qu7sF6XOT9WbHo1fIhZCNlQsYjuqjWb+PvgFU7P8/GleUEdRtRdVyA4UdnWVmtjhWHxXwYJvMlvybwlikiGSCV/fpIp3mkOYVrvFUYGUGvVZQOeS4hq+WrrdDLTjYoWCheWJJyt/hxvzYl9trEWPU+j1Oo9Pr8rLVGUJhs6f51llEPuMRp0/sokE00nRM96wVJOCv7Q==";
+        }
+        {
+          type = "ed25519";
+          key = "AAAAC3NzaC1lZDI1NTE5AAAAINNsMAoi3+7N7B9uqG8sU/mGvnLBHXMhC1jzpgBO0n02";
+        }
+      ];
     };
   };
 }

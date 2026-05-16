@@ -4,10 +4,14 @@
 
 {
   imports = [
+    ./anubis.nix
+    ./forgejo.nix
     ./hello-http.nix
     ./mailserver.nix
     ./nginx.nix
     ./obsidian-livesync.nix
+    ./postgres.nix
+    ./redis.nix
     ./website.nix
   ];
 }
