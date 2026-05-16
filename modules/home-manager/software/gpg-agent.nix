@@ -14,6 +14,8 @@
 
       # allow pam auto-unlock
       extraConfig = "allow-preset-passphrase";
+
+      pinentry.package = pkgs.pinentry-qt;
     };
 
     # keygrip for pam auto-unlock
