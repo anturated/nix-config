@@ -25,7 +25,7 @@ in
 
       # won't get created on it's own for whatever reason
       "/srv/storage/postgresql/18".d = {
-        mode = "0755";
+        mode = "0700";
         user = "postgres";
         group = "postgres";
       };
