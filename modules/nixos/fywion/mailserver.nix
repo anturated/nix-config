@@ -110,9 +110,8 @@ in
 
         "spam@${rdomain}" = {
           aliases = [
-            "shush@${rdomain}"
+            "no@${rdomain}"
             "stfu@${rdomain}"
-            "bot@${rdomain}"
           ];
           hashedPasswordFile = config.sops.secrets.mailserver-spam.path;
         };
@@ -136,8 +135,8 @@ in
 
         "caterpillar@${rdomain}" = {
           aliases = [
-            "bot"
-            "pill"
+            "pill@${rdomain}"
+            "bot@${rdomain}"
           ];
           hashedPasswordFile = config.sops.secrets.mailserver-caterpillar.path;
         };
