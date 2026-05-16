@@ -10,6 +10,11 @@ let
   cfg = config.ceirios.fywion.forgejo;
   rdomain = config.networking.domain;
 
+  evergarden-theme = pkgs.fetchurl {
+    url = "https://evergarden.moe/gitea/theme-evergarden-winter-green.css";
+    hash = "sha256-dQaTYyA7YuaxN/3kpyRdJerbPPAhxbZscPeNPJKXXJE=";
+  };
+
   inherit (lib.modules) mkIf mkForce;
   inherit (self.lib) mkFywionOption mkSecret;
 in
@@ -89,11 +94,20 @@ in
 
           attachment.ALLOWED_TYPES = "*/*";
 
-          # ui = {
-          #   # TODO: add own?
-          #   # for now this is green enough
-          #   DEFAULT_THEME = "gitea";
-          # };
+          ui = {
+            DEFAULT_THEME = "evergarden-winter-green";
+            THEMES = lib.concatStringsSep "," [
+              # i don't care enough to add the rest
+              "evergarden-winter-green"
+              # "evergarden-fall-green"
+              # "evergarden-spring-green"
+              # "evergarden-summer-green"
+
+              "forgejo-auto"
+              "forgejo-light"
+              "forgejo-dark"
+            ];
+          };
 
           "ui.meta" = {
             AUTHOR = "Desant's forge";
@@ -212,6 +226,34 @@ in
             );
         };
       };
+    };
+
+    # this SHOULD download the theme where it needs to be
+    systemd.tmpfiles.settings."forgejo-theme" = {
+      # need each dir for some reason too
+      "${config.services.forgejo.stateDir}/custom/public".d = {
+        mode = "0755";
+        user = "forgejo";
+        group = "forgejo";
+      };
+      "${config.services.forgejo.stateDir}/custom/public/assets".d = {
+        mode = "0755";
+        user = "forgejo";
+        group = "forgejo";
+      };
+      "${config.services.forgejo.stateDir}/custom/public/assets/css".d = {
+        mode = "0755";
+        user = "forgejo";
+        group = "forgejo";
+      };
+
+      "${config.services.forgejo.stateDir}/custom/public/assets/css/theme-evergarden-winter-green.css".C =
+        {
+          mode = "0644";
+          user = "forgejo";
+          group = "forgejo";
+          argument = "${evergarden-theme}";
+        };
     };
   };
 }
